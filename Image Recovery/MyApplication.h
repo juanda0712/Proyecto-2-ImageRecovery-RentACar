@@ -12,11 +12,18 @@
 #include <QPushButton>
 #include "image_loader/ImageLoader.h"
 
-class MyApplication {
+class MyApplication:public QMainWindow {
+private:
+    QPushButton* buttons;
+    QLabel* title;
+    void initText();
+    void initButtons();
 public:
-    QMainWindow *window;
+    QMainWindow* window;
     MyApplication();
     ~MyApplication();
+public slots:
+    void printOnPressed();
 };
 
 

@@ -7,8 +7,8 @@
 void ImageLoader::loadImage(QString filepath, QMainWindow *parent) {
     QPixmap img;
     img.load(filepath);
-    QLabel *label1 = new QLabel(parent);
-    label1->setPixmap(img);
-    label1->setGeometry(100, 50, 264,191);
-    label1->show();
+    QLabel label1(parent);
+    label1.setPixmap(img);
+    label1.setGeometry(parent->width()/2 - label1.width()/2, 50, 264,191);
+    parent->createPopupMenu();
 }
