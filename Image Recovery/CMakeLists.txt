@@ -14,7 +14,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(Image_Recovery main.cpp image_loader/ImageLoader.cpp image_loader/ImageLoader.h MyApplication.cpp MyApplication.h)
+add_executable(Image_Recovery main.cpp image_loader/ImageLoader.cpp image_loader/ImageLoader.h MyApplication.cpp MyApplication.h genetic_algorithm/ImageCompleter.cpp genetic_algorithm/ImageCompleter.h genetic_algorithm/Individual.cpp genetic_algorithm/Individual.h)
 target_link_libraries(Image_Recovery
         Qt5::Core
         Qt5::Gui
