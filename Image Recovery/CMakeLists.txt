@@ -8,6 +8,8 @@ set(CMAKE_AUTOUIC ON)
 
 set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/qt5")
 
+FIND_PACKAGE( OpenCV REQUIRED core highgui imgproc)
+
 find_package(Qt5 COMPONENTS
         Core
         Gui
