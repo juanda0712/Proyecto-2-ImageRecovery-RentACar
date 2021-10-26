@@ -3,4 +3,4 @@ project(Rent_A_Car)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Rent_A_Car main.cpp)
+add_executable(Rent_A_Car main.cpp Graph.cpp Graph.h)
