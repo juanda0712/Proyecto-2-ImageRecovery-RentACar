@@ -5,11 +5,10 @@
 #include "Individual.h"
 #include <iostream>
 
-Individual::Individual(int id1) {
-    this->id = id1;
+Individual::Individual() {
     cout << "Individual created" << endl;
 }
 
-int Individual::getId() const {
-    return this->id;
+int Individual::getFitness() {
+    return this->fitness;
 }

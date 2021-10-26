@@ -9,7 +9,7 @@ MyApplication::MyApplication() {
     initText();
     initButtons();
     this->window->setWindowTitle("Image Recovery Application");
-    window->resize(800,600);
+    window->resize(400,400);
     window->show();
 }
 
@@ -22,14 +22,14 @@ MyApplication::~MyApplication() {
 void MyApplication::initText() {
     QFont font("Times", 30, -1, true);
     this->title = new QLabel("Image Recovery App", this->window);
-    this->title->setFixedSize(350,150);
+    this->title->setFixedSize(100,100);
     this->title->setFont(font);
-    this->title->setGeometry(800/3, 5, 350,150);
+    this->title->setGeometry(260, 5, 100,100);
 }
 
 void MyApplication::initButtons() {
     this->buttons = new QPushButton("PRESS", this->window);
-    this->buttons->setGeometry(400,350,buttons->width(),buttons->height());
+    this->buttons->setGeometry(200,350,buttons->width(),buttons->height());
     QObject::connect(buttons, &QPushButton::clicked, this, &MyApplication::printOnPressed);
 }
 
