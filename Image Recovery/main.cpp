@@ -15,5 +15,6 @@ int main(int argc, char **argv) {
     //cout << image.col(0) << endl;
     cout << image.rows << endl;
     cout << image.row(1) << endl;
-    cout << image.row(0).col(0) << endl;
+    Mat pixel = image.row(0).col(0);
+    cout << pixel << endl;
 }
