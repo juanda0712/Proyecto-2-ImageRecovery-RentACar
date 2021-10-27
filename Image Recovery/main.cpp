@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     ImageOperations op(image);
     op.savePixels();
     int i = 0;
-    while (i < op.getColors().size() - 1) {
+    while (i < op.getColors().size()) {
         cout << op.getColors()[i] << endl;
         i++;
     }
