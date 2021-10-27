@@ -5,12 +5,12 @@
 #include "Genetics.h"
 #include "iostream"
 
-Genetics::Genetics(int num) {
+Genetics::Genetics(int num, vector<int> p) {
     this->fittest = nullptr;
     this->secondFittest = nullptr;
     this->nextGen = nullptr;
     this->numOfGenerations = num;
-    this->currentGen = new Population(10);
+    this->currentGen = new Population(p);
 }
 
 Genetics::~Genetics() {
@@ -83,6 +83,10 @@ void Genetics::inversion() {
             secondFittest->getChromosome()[k] = 0;
         }
     }
+}
+
+void Genetics::updateGeneration() {
+
 }
 
 Individual Genetics::getFittestChild() {

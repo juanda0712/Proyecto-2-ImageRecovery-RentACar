@@ -13,7 +13,7 @@ private:
     int populationSize;
     Individual* individuals[10];
 public:
-    Population(int size);
+    Population(vector<int> p);
     void initializePopulation(int imagePixels);
     int calculateFitness();
     Individual getFittest();

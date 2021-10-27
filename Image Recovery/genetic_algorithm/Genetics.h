@@ -18,7 +18,7 @@ private:
     Individual* fittest;
     Individual* secondFittest;
 public:
-    Genetics(int num);
+    Genetics(int num, vector<int> p);
     ~Genetics();
     void geneticAlgorithm();
     void selection();

@@ -6,6 +6,7 @@
 #include <iostream>
 
 Individual::Individual(int genes) {
+    this->genes = genes;
     this->fitness = 0;
     int flag = 1 + (rand() % 2);
     for (int p = 0; p < genes; p++) {
@@ -24,4 +25,8 @@ vector<int> Individual::getChromosome() {
 
 int Individual::getFitness() {
     return this->fitness;
+}
+
+int Individual::getGenes() {
+    return 0;
 }
