@@ -4,21 +4,24 @@
 #include "opencv4/opencv2/opencv.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
-#include "array"
+#include <vector>
+
 using namespace cv;
+using namespace std;
 
 class ImageOperations {
 
 private:
     Mat image;
+    vector<Vec3b> colorsList;
     int rows, cols, numberOfColors;
     int numberOfDifferentColors();
-
-
+    void discardRedundantPixels();
 public:
-    ImageOperations();
+    ImageOperations(Mat myImage);
     ~ImageOperations();
-
+    void savePixels();
+    vector<Vec3b> getColors();
 };
 
 

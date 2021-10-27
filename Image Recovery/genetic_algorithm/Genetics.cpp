@@ -15,7 +15,7 @@ Genetics::~Genetics() {
 }
 
 void Genetics::geneticAlgorithm() {
-    population.calculateFitness();
+    /*population.calculateFitness();
     while (this->numOfGenerations > 0) {
         this->selection();
         this->crossover();
@@ -25,6 +25,7 @@ void Genetics::geneticAlgorithm() {
         this->addFittestChild();
         population.calculateFitness();
     }
+     */
 }
 
 void Genetics::selection() {
@@ -33,11 +34,12 @@ void Genetics::selection() {
 }
 
 void Genetics::crossover() {
-    for (int i = 0; i < genes/2; i++) {
+    /*for (int i = 0; i < genes/2; i++) {
         int temp = this->fittest.genes[i];
         this->fittest.genes[i] = secondFittest.genes[i];
         this->secondFittest.genes[i] = temp;
     }
+     */
 }
 
 void Genetics::mutation() {
