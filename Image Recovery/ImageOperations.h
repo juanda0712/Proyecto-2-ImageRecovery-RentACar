@@ -15,8 +15,6 @@ private:
     Mat image;
     vector<Vec3b> colorsList;
     int rows, cols, numberOfColors;
-    int numberOfDifferentColors();
-    void discardRedundantPixels();
 public:
     ImageOperations(Mat myImage);
     ~ImageOperations();

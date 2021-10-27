@@ -5,8 +5,21 @@
 #include "Individual.h"
 #include <iostream>
 
-Individual::Individual() {
-    cout << "Individual created" << endl;
+Individual::Individual(int genes) {
+    this->fitness = 0;
+    int flag = 1 + (rand() % 2);
+    for (int p = 0; p < genes; p++) {
+        if (flag == 1) {
+            this->chromosome.insert(chromosome.cend(), 1);
+        }
+        else {
+            this->chromosome.insert(chromosome.cend(), 0);
+        }
+    }
+}
+
+vector<int> Individual::getChromosome() {
+    return this->chromosome;
 }
 
 int Individual::getFitness() {

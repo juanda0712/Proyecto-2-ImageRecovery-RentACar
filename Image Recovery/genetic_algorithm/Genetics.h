@@ -13,9 +13,10 @@ using namespace std;
 class Genetics {
 private:
     int numOfGenerations;
-    Population* population;
-    Individual fittest;
-    Individual secondFittest;
+    Population* currentGen;
+    Population* nextGen;
+    Individual* fittest;
+    Individual* secondFittest;
 public:
     Genetics(int num);
     ~Genetics();
@@ -23,6 +24,8 @@ public:
     void selection();
     void crossover();
     void mutation();
+    void inversion();
+    void updateGeneration();
     Individual getFittestChild();
 };
 

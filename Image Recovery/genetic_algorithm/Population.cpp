@@ -8,8 +8,10 @@ Population::Population(int size) {
     initializePopulation();
 }
 
-void Population::initializePopulation() {
-
+void Population::initializePopulation(int imagePixels) {
+    for (auto & individual : this->individuals) {
+        individual = new Individual(imagePixels);
+    }
 }
 
 Individual Population::getFittest() {

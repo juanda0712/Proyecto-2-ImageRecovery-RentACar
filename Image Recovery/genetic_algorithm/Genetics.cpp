@@ -6,58 +6,85 @@
 #include "iostream"
 
 Genetics::Genetics(int num) {
+    this->fittest = nullptr;
+    this->secondFittest = nullptr;
+    this->nextGen = nullptr;
     this->numOfGenerations = num;
-    this->population = new Population(10);
+    this->currentGen = new Population(10);
 }
 
 Genetics::~Genetics() {
-    delete this->population;
+    delete this->currentGen;
+    delete this->nextGen;
+    delete this->fittest;
+    delete this->secondFittest;
 }
 
 void Genetics::geneticAlgorithm() {
-    /*population.calculateFitness();
+    currentGen->calculateFitness();
     while (this->numOfGenerations > 0) {
         this->selection();
         this->crossover();
-        if ((rand() + 1) % 6 < 5)) {
+        if (1 + (rand() % 7) < 5) {
             this->mutation();
         }
-        this->addFittestChild();
-        population.calculateFitness();
+        if (1 + (rand()%100) < 2) {
+            this->inversion();
+        }
+        this->updateGeneration();
+        this->currentGen = nextGen;
+        this->currentGen->calculateFitness();
+        this->numOfGenerations--;
     }
-     */
 }
 
 void Genetics::selection() {
-    this->fittest = population->getFittest();
-    this->secondFittest = population->getSecondFittest();
+    *fittest = currentGen->getFittest();
+    *secondFittest = currentGen->getSecondFittest();
 }
 
 void Genetics::crossover() {
-    /*for (int i = 0; i < genes/2; i++) {
-        int temp = this->fittest.genes[i];
-        this->fittest.genes[i] = secondFittest.genes[i];
-        this->secondFittest.genes[i] = temp;
+    for (int i = 0; i < fittest->getGenes()/2; i++) {
+        int temp = this->fittest->getChromosome()[i];
+        this->fittest->getChromosome()[i] = secondFittest->getChromosome()[i];
+        this->secondFittest->getChromosome()[i] = temp;
     }
-     */
 }
 
 void Genetics::mutation() {
-    int mutationPoint;
-    if (this->fittest.genes[mutationPoint] == 1) {
-        this->fittest.genes[mutationPoint] = 0;
+    int mutationPoint = rand()%fittest->getGenes();
+    if (this->fittest->getChromosome()[mutationPoint] == 1) {
+        this->fittest->getChromosome()[mutationPoint] = 0;
     }
     else {
-        this->fittest.genes[mutationPoint] = 1;
+        this->fittest->getChromosome()[mutationPoint] = 1;
     }
-    if (this->secondFittest.genes[mutationPoint] == 1) {
-        this->secondFittest.genes[mutationPoint] = 0;
+    mutationPoint = rand()%secondFittest->getGenes();
+    if (this->secondFittest->getChromosome()[mutationPoint] == 1) {
+        this->secondFittest->getChromosome()[mutationPoint] = 0;
     }
     else {
-        this->secondFittest.genes[mutationPoint] = 1;
+        this->secondFittest->getChromosome()[mutationPoint] = 1;
+    }
+}
+
+void Genetics::inversion() {
+    int inversionHalf = rand()%fittest->getGenes()/2;
+    for (int k = inversionHalf; k < fittest->getGenes(); k++) {
+        fittest->getChromosome()[k]++;
+        if (fittest->getChromosome()[k] > 1) {
+            fittest->getChromosome()[k] = 0;
+        }
+    }
+    inversionHalf = rand()%secondFittest->getGenes()/2;
+    for (int k = inversionHalf; k < secondFittest->getGenes(); k++) {
+        secondFittest->getChromosome()[k]++;
+        if (secondFittest->getChromosome()[k] > 1) {
+            secondFittest->getChromosome()[k] = 0;
+        }
     }
 }
 
 Individual Genetics::getFittestChild() {
-    return this->fittest;
+    return *fittest;
 }

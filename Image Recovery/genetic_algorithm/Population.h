@@ -11,12 +11,11 @@
 class Population {
 private:
     int populationSize;
-    Individual individuals[10];
-    Individual fittest1;
-    Individual fittest2;
+    Individual* individuals[10];
 public:
     Population(int size);
-    void initializePopulation();
+    void initializePopulation(int imagePixels);
+    int calculateFitness();
     Individual getFittest();
     Individual getSecondFittest();
 };

@@ -5,19 +5,20 @@
 #ifndef IMAGE_RECOVERY_INDIVIDUAL_H
 #define IMAGE_RECOVERY_INDIVIDUAL_H
 
-#include <QColor>
+#include <vector>
 
 using namespace std;
 
 class Individual {
 private:
+    int genes;
     int fitness;
-    int id;
-    QColor* color;
+    vector<int> chromosome;
 public:
-    int genes[5];
-    Individual();
+    Individual(int genes);
+    vector<int> getChromosome();
     int getFitness();
+    int getGenes();
 };
 
 
