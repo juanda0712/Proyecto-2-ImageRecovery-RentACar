@@ -125,9 +125,12 @@ void Graph::adyList() {
 
 void Graph::createGraph(int num) {
 
-    string names [] = {""};
+    string names [] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                       "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+                       "U", "V", "W", "X", "Y", "Z", "Aa", "Bb", "Cc", "Dd"};
     srand(time(NULL));
     int i = 0;
+    int j = 0;
     if(num <= 0 or num > 50){
         num = (rand()%49) + 1;
         cout<<"El numero que eligio no entra en los parametros por lo que se decidio el numero: "<<num<<endl;

@@ -33,7 +33,7 @@ class arista{
     friend class Graph;
 
 private:
-    int Km;
+    int Gas;
 
 };
 
