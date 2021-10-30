@@ -161,3 +161,62 @@ void Graph::createGraph(int num) {
     //cout<<"*"<<num<<"*"<<endl;
 }
 
+void Graph::tracking(vertice *start, vertice *end) {
+
+    vertice* Vnow, *Endnow;
+    bool band, band2, band3 = true;
+    arista *aux;
+    typedef pair<vertice*, vertice*> VerticeVertice;
+    queue<vertice *>cola;
+    stack<VerticeVertice>pila;
+    list<vertice*>lista;
+    list<vertice*>::iterator i;
+
+    cola.push(start);
+
+    while(!cola.empty()){
+
+        Vnow = cola.front();
+        cola.pop();
+        for(i=lista.begin(); i != lista.end(); i++){
+            if(Vnow == *i){
+                band = false;
+            }
+        }
+        if (band){
+            if(Vnow == end){
+                band = false;
+                Endnow = end;
+
+                while(!pila.empty()){
+                    cout<<Endnow->name<<"<-";
+
+                    while(!pila.empty() && pila.top().second != Endnow){
+                        pila.pop();
+                    }
+                    if(!pila.empty()){
+                        Endnow = pila.top().first;
+                    }
+                }
+            }
+            lista.push_back(Vnow);
+            aux = Vnow->ady;
+            while(aux != NULL){
+                for(i = lista.begin();i != lista.end();i++){
+                    if(aux->ady == *i){
+                        band2 = false;
+                    }
+                }
+                if (band2){
+                    cola.push(aux->ady);
+                    pila.push(VerticeVertice(Vnow,aux->ady));
+                }
+                aux = aux->sig;
+            }
+        }
+
+    }
+    if (band3){
+        cout<<"No se encontró ruta"<<endl;
+    }
+}

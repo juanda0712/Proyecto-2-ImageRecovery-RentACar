@@ -7,10 +7,9 @@
 
 #include <iostream>
 #include <ctime>
-#include <fstream>
-#include <string.h>
-#include <stdlib.h>
-
+#include <queue>
+#include <list>
+#include <stack>
 using namespace std;
 
 class arista;
@@ -52,6 +51,7 @@ public:
     void kill();
     //void eliminateVertice()
     void createGraph(int num);
+    void tracking(vertice *start, vertice *end);
     string removeItem(string item, string list[]);
 
 private:
