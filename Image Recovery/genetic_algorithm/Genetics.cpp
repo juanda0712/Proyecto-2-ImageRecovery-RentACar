@@ -1,7 +1,3 @@
-//
-// Created by eduardo on 22/10/21.
-//
-
 #include "Genetics.h"
 #include "iostream"
 

@@ -1,11 +1,10 @@
-//
-// Created by juanda on 10/26/21.
-//
-
 #include "ImageOperations.h"
 
 ImageOperations::ImageOperations(Mat myImage) {
     this->image = myImage;
+    this->totalImagePixels = myImage.rows * myImage.cols;
+    this->rectanglePoints(myImage);
+    this->totalRectanglePixels = (this->points[2]-this->points[0])*(this->points[3]-this->points[1]);
 }
 
 ImageOperations::~ImageOperations() {
@@ -29,10 +28,10 @@ vector <Vec3b> ImageOperations::getColors() {
     return this->colorsList;
 }
 
-void ImageOperations::rectanglePoints() {
-    for (int row = 0; row < this->image.rows; row++) {
-        for (int col = 0; col < this->image.cols; col++) {
-            Vec3b color = this->image.at<Vec3b>(Point(col,row));
+void ImageOperations::rectanglePoints(Mat myImage) {
+    for (int row = 0; row < myImage.rows; row++) {
+        for (int col = 0; col < myImage.cols; col++) {
+            Vec3b color = myImage.at<Vec3b>(Point(col,row));
             if (color[0] == 255 & color[1] == 255 & color[2] == 255 ){
                 this->points.insert(points.cend(),col);
                 this->points.insert(points.cend(),row);
@@ -40,9 +39,9 @@ void ImageOperations::rectanglePoints() {
             }
         }
     }
-    for (int row =  this->image.rows-1; row  > 0 ; row--) {
-        for (int col = this->image.cols-1; col  > 0 ; col--) {
-            Vec3b color = this->image.at<Vec3b>(Point(col,row));
+    for (int row =  myImage.rows-1; row  > 0 ; row--) {
+        for (int col = myImage.cols-1; col  > 0 ; col--) {
+            Vec3b color = myImage.at<Vec3b>(Point(col,row));
             if (color[0] == 255 & color[1] == 255 & color[2] == 255 ){
                 this->points.insert(points.cend(),col);
                 this->points.insert(points.cend(),row);

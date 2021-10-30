@@ -15,7 +15,7 @@ private:
     Mat image;
     vector<Vec3b> colorsList;
     vector<int> points;
-    int rows, cols, numberOfColors;
+    int totalImagePixels, totalRectanglePixels;
     //Mat pixels
     int numberOfDifferentColors();
     void discardRedundantPixels();
@@ -23,7 +23,7 @@ public:
     ImageOperations(Mat myImage);
     ~ImageOperations();
     void savePixels();
-    void rectanglePoints();
+    void rectanglePoints(Mat myImage);
     vector<Vec3b> getColors();
     vector<int> getPoints();
 };
