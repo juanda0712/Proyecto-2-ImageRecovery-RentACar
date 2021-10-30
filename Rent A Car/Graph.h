@@ -52,6 +52,7 @@ public:
     void kill();
     //void eliminateVertice()
     void createGraph(int num);
+    string removeItem(string item, string list[]);
 
 private:
     vertice *h;
