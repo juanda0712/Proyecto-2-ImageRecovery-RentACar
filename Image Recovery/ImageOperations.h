@@ -10,7 +10,6 @@ using namespace cv;
 using namespace std;
 
 class ImageOperations {
-
 private:
     Mat image;
     vector<Vec3b> colorsList;

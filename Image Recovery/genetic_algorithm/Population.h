@@ -10,7 +10,6 @@
 
 class Population {
 private:
-    int populationSize;
     Individual* individuals[10];
 public:
     Population(vector<int> p);

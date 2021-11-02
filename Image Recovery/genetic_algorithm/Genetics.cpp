@@ -1,4 +1,6 @@
 #include "Genetics.h"
+
+#include <utility>
 #include "iostream"
 
 Genetics::Genetics(int num, vector<int> p) {

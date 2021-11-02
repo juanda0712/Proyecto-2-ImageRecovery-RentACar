@@ -23,10 +23,14 @@ vector<int> Individual::getChromosome() {
     return this->chromosome;
 }
 
+int Individual::calculateIndFitness() {
+
+}
+
 int Individual::getFitness() {
     return this->fitness;
 }
 
 int Individual::getGenes() {
-    return 0;
+    return this->genes;
 }

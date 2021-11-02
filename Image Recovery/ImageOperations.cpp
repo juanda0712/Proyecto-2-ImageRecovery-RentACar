@@ -18,14 +18,12 @@ ImageOperations::~ImageOperations() {
 }
 
 void ImageOperations::savePixels(Mat myImage) {
-    int i = 0;
     for (int y = 0; y < myImage.rows; y++) {
         for (int x = 0; x < myImage.cols; x++) {
             Vec3b color = myImage.at<Vec3b>(Point(x,y));
             if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
                 this->colorsList.push_back(color);
             }
-            i++;
         }
     }
 }

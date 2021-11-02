@@ -17,6 +17,7 @@ private:
 public:
     Individual(int genes);
     vector<int> getChromosome();
+    int calculateIndFitness();
     int getFitness();
     int getGenes();
 };
