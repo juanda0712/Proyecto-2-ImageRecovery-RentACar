@@ -139,23 +139,22 @@ string Graph::removeItem(string item, string *list) {
 void Graph::createGraph(int num) {
 
     string names [] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-                       "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
-                       "U", "V", "W", "X", "Y", "Z"};
+                       "K", "L"};
     string aux [num];
     int backup;
     string auxName;
     srand(time(NULL));
     int i = 0;
     int j = 0;
-    if(num <= 0 or num > 26){
+    if(num <= 0 or num > 12){
         num = (rand()%25) + 1;
         cout<<"El numero que eligio no entra en los parametros por lo que se decidio el numero: "<<num<<endl;
     }
     while (i != num){
-        auxName = names[(rand()%25)+1];
+        auxName = names[(rand()%26)];
         aux->append(auxName);
         setVertice(auxName);
-        //backup = (rand()%99) + 1;
+        backup = (rand()%99) + 1;
         //cout<<backup<<endl;
         i++;
     }
@@ -189,7 +188,7 @@ void Graph::tracking(vertice *start, vertice *end) {
                 Endnow = end;
 
                 while(!pila.empty()){
-                    cout<<Endnow->name<<"<-";
+                    cout<<Endnow->name <<"<-";
 
                     while(!pila.empty() && pila.top().second != Endnow){
                         pila.pop();

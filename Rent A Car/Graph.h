@@ -52,6 +52,7 @@ public:
     //void eliminateVertice()
     void createGraph(int num);
     void tracking(vertice *start, vertice *end);
+    void realTrack(vertice* start, vertice* end);
     string removeItem(string item, string list[]);
 
 private:
