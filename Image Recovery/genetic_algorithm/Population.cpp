@@ -5,6 +5,7 @@
 #include "Population.h"
 
 Population::Population(vector<int> p) {
+    this->num = 10;
     int totalPixels = (p[3]-p[1])*(p[4]-p[2]);
     initializePopulation(totalPixels);
 }
@@ -15,29 +16,32 @@ void Population::initializePopulation(int imagePixels) {
     }
 }
 
-int Population::calculateFitness() {
-    /*for (int & fitnessPoint : this->fitnessPoints) {
-        for (auto & individual : this->individuals) {
-            fitnessPoint = individual->getFitness();
-        }
-    }*/
-}
-
-Individual Population::getFittest() {
-    /*int fitness;
-    for (int i = 0; i < 10; i++) {
-        if (this->fitnessPoints[i] > this->fitnessPoints[i+1]) {
-            fitness = fitnessPoints[i];
-        }
-        else {
-            fitness = fitnessPoints[i+1];
-        }
-    }
-    return fitness;*/
-}
-
-Individual Population::getSecondFittest() {
+void Population::calculateFitness() {
     for (auto & individual : this->individuals) {
+        individual->calculateIndFitness();
+    }
+}
 
+Individual* Population::getFittest(int currentFitness, int i) {
+    if (i >= this->num) {
+        return this->individuals[i];
+    }
+    else if (this->individuals[i]->getFitness() > currentFitness) {
+        return this->getFittest(this->individuals[i]->getFitness(), ++i);
+    }
+    else {
+        return this->getFittest(currentFitness, ++i);
+    }
+}
+
+Individual* Population::getSecondFittest(int currentFitness, int i) {
+    if (i >= this->num - 1) {
+        return this->individuals[i];
+    }
+    else if (this->individuals[i]->getFitness() > currentFitness) {
+        return this->getFittest(this->individuals[i]->getFitness(), ++i);
+    }
+    else {
+        return this->getFittest(currentFitness, ++i);
     }
 }

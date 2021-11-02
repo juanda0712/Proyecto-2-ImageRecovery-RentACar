@@ -7,16 +7,18 @@
 
 
 #include "Individual.h"
+#include "iostream"
 
 class Population {
 private:
+    int num;
     Individual* individuals[10];
 public:
     Population(vector<int> p);
     void initializePopulation(int imagePixels);
-    int calculateFitness();
-    Individual getFittest();
-    Individual getSecondFittest();
+    void calculateFitness();
+    Individual* getFittest(int currentFitness, int i);
+    Individual* getSecondFittest(int currentFitness, int i);
 };
 
 

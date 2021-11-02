@@ -8,6 +8,7 @@ Genetics::Genetics(int num, vector<int> p) {
     this->secondFittest = nullptr;
     this->nextGen = nullptr;
     this->numOfGenerations = num;
+    this->pixels = p;
     this->currentGen = new Population(p);
 }
 
@@ -26,19 +27,17 @@ void Genetics::geneticAlgorithm() {
         if (1 + (rand() % 7) < 5) {
             this->mutation();
         }
-        if (1 + (rand()%100) < 2) {
+        if (1 + (rand()%50) < 5) {
             this->inversion();
         }
-        this->updateGeneration();
-        this->currentGen = nextGen;
-        this->currentGen->calculateFitness();
+        currentGen = new Population(this->pixels);
         this->numOfGenerations--;
     }
 }
 
 void Genetics::selection() {
-    *fittest = currentGen->getFittest();
-    *secondFittest = currentGen->getSecondFittest();
+    this->fittest = currentGen->getFittest(0,0);
+    this->secondFittest = currentGen->getSecondFittest(0,0);
 }
 
 void Genetics::crossover() {
@@ -81,12 +80,4 @@ void Genetics::inversion() {
             secondFittest->getChromosome()[k] = 0;
         }
     }
-}
-
-void Genetics::updateGeneration() {
-
-}
-
-Individual Genetics::getFittestChild() {
-    return *fittest;
 }
