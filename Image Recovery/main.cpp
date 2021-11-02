@@ -8,9 +8,7 @@ using namespace std;
 using namespace cv;
 
 int main() {
-    string name;
-    cin >> name;
-    App* application = new App(name);
+    App* application = new App();
     int key;
     while (application->isRunning()) {
         key = waitKey();

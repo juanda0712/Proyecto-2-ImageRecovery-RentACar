@@ -4,20 +4,27 @@
 
 #include "App.h"
 
-App::App(string imageName) {
+App::App() {
     this->running = true;
-    img = imread("/home/eduardo/Escritorio/Proyecto-2-ImageRecovery-RentACar/Image Recovery/"+imageName+".png");
-    this->ops = new ImageOperations(img);
+    img = imread("/home/eduardo/Escritorio/Proyecto-2-ImageRecovery-RentACar/Image Recovery/images/patron.png");
     initWindow();
+    initPtrs();
 }
 
 App::~App() {
-    delete this->engine;
+    delete this->genetic_engine;
     delete this->ops;
 }
 
 void App::initWindow() {
-    namedWindow("My Image Recovery App", WINDOW_AUTOSIZE);
+    namedWindow("My Image Recovery App");
+    putText(this->img, "My App", Point(250,10), 1,50, Scalar(0,0,0), 5);
+    imshow("My Image Recovery App", this->img);
+}
+
+void App::initPtrs() {
+    this->ops = new ImageOperations(this->img);
+    this->genetic_engine = new Genetics(20, ops->getPoints());
 }
 
 bool App::isRunning() {
@@ -34,7 +41,6 @@ void App::listen(int key) {
         this->kill();
     }
     else if (key == 'd') {
-        imshow("My Image Recovery App", this->img);
         std::cout << "Next" << std::endl;
     }
     else if (key == 'a') {
