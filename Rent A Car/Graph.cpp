@@ -44,6 +44,7 @@ vertice *Graph::getVertice(string name) {
         if (aux->name == name){
             return aux;
         }
+        aux = aux->sig;
     }
     return NULL;
 }
@@ -164,28 +165,27 @@ void Graph::createGraph(int num) {
 void Graph::tracking(vertice *start, vertice *end) {
 
     vertice* Vnow, *Endnow;
-    bool band, band2, band3 = true;
+    int band, band2, band3 = 0;
     arista *aux;
     typedef pair<vertice*, vertice*> VerticeVertice;
-    queue<vertice *>cola;
+    queue<vertice*>cola;
     stack<VerticeVertice>pila;
-    list<vertice*>lista;
+    list<vertice*>listaV;
     list<vertice*>::iterator i;
 
     cola.push(start);
-
     while(!cola.empty()){
-
+        band = 0;
         Vnow = cola.front();
         cola.pop();
-        for(i=lista.begin(); i != lista.end(); i++){
+        for(i=listaV.begin(); i != listaV.end(); i++){
             if(Vnow == *i){
-                band = false;
+                band = 1;
             }
         }
-        if (band){
+        if (band == 0){
             if(Vnow == end){
-                band = false;
+                band3 = 1;
                 Endnow = end;
 
                 while(!pila.empty()){
@@ -199,15 +199,16 @@ void Graph::tracking(vertice *start, vertice *end) {
                     }
                 }
             }
-            lista.push_back(Vnow);
+            listaV.push_back(Vnow);
             aux = Vnow->ady;
             while(aux != NULL){
-                for(i = lista.begin();i != lista.end();i++){
+                band2= 0;
+                for(i = listaV.begin();i != listaV.end();i++){
                     if(aux->ady == *i){
-                        band2 = false;
+                        band2 = 1;
                     }
                 }
-                if (band2){
+                if (band2 == 0){
                     cola.push(aux->ady);
                     pila.push(VerticeVertice(Vnow,aux->ady));
                 }
@@ -216,7 +217,7 @@ void Graph::tracking(vertice *start, vertice *end) {
         }
 
     }
-    if (band3){
-        cout<<"No se encontró ruta"<<endl;
+    if (band3 == 0){
+        cout<<"No se encontro ruta"<<endl;
     }
 }
