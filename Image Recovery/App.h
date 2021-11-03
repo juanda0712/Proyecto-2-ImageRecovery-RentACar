@@ -25,6 +25,7 @@ private:
 public:
     App();
     ~App();
+    void begin();
     void kill();
     void listen(int key);
     bool isRunning();

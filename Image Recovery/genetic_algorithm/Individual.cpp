@@ -8,8 +8,9 @@
 Individual::Individual(int genes) {
     this->genes = genes;
     this->fitness = 0;
-    int flag = 1 + (rand() % 2);
+    int flag;
     for (int p = 0; p < genes; p++) {
+        flag = 1 + (rand() % 2);
         if (flag == 1) {
             this->chromosome.insert(chromosome.cend(), 1);
         }
@@ -28,6 +29,7 @@ int Individual::calculateIndFitness() {
 }
 
 int Individual::getFitness() {
+    cout << "returning fitness" << endl;
     return this->fitness;
 }
 

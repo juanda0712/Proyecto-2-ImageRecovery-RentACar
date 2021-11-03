@@ -31,6 +31,10 @@ bool App::isRunning() {
     return this->running;
 }
 
+void App::begin() {
+    this->genetic_engine->geneticAlgorithm();
+}
+
 void App::kill() {
     destroyAllWindows();
     this->running = false;
@@ -39,6 +43,9 @@ void App::kill() {
 void App::listen(int key) {
     if (key == 27) {
         this->kill();
+    }
+    else if (key == 13) {
+        this->begin();
     }
     else if (key == 'd') {
         std::cout << "Next" << std::endl;

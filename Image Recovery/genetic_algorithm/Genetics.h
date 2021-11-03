@@ -15,7 +15,6 @@ private:
     int numOfGenerations;
     vector<int> pixels;
     Population* currentGen;
-    Population* nextGen;
     Individual* fittest;
     Individual* secondFittest;
 public:

@@ -6,7 +6,6 @@
 Genetics::Genetics(int num, vector<int> p) {
     this->fittest = nullptr;
     this->secondFittest = nullptr;
-    this->nextGen = nullptr;
     this->numOfGenerations = num;
     this->pixels = p;
     this->currentGen = new Population(p);
@@ -14,7 +13,6 @@ Genetics::Genetics(int num, vector<int> p) {
 
 Genetics::~Genetics() {
     delete this->currentGen;
-    delete this->nextGen;
     delete this->fittest;
     delete this->secondFittest;
 }
@@ -31,16 +29,19 @@ void Genetics::geneticAlgorithm() {
             this->inversion();
         }
         currentGen = new Population(this->pixels);
+        currentGen->calculateFitness();
         this->numOfGenerations--;
     }
 }
 
 void Genetics::selection() {
-    this->fittest = currentGen->getFittest(0,0);
-    this->secondFittest = currentGen->getSecondFittest(0,0);
+    cout << "Selecting" << endl;
+    this->fittest = currentGen->getFittest();
+    this->secondFittest = currentGen->getSecondFittest();
 }
 
 void Genetics::crossover() {
+    cout << "Crossing" << endl;
     for (int i = 0; i < fittest->getGenes()/2; i++) {
         int temp = this->fittest->getChromosome()[i];
         this->fittest->getChromosome()[i] = secondFittest->getChromosome()[i];
@@ -49,6 +50,7 @@ void Genetics::crossover() {
 }
 
 void Genetics::mutation() {
+    cout << "Mutating" << endl;
     int mutationPoint = rand()%fittest->getGenes();
     if (this->fittest->getChromosome()[mutationPoint] == 1) {
         this->fittest->getChromosome()[mutationPoint] = 0;
@@ -66,6 +68,7 @@ void Genetics::mutation() {
 }
 
 void Genetics::inversion() {
+    cout << "Inverting" << endl;
     int inversionHalf = rand()%fittest->getGenes()/2;
     for (int k = inversionHalf; k < fittest->getGenes(); k++) {
         fittest->getChromosome()[k]++;

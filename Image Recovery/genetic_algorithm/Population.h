@@ -17,8 +17,8 @@ public:
     Population(vector<int> p);
     void initializePopulation(int imagePixels);
     void calculateFitness();
-    Individual* getFittest(int currentFitness, int i);
-    Individual* getSecondFittest(int currentFitness, int i);
+    Individual* getFittest();
+    Individual* getSecondFittest();
 };
 
 
