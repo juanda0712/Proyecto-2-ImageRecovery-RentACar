@@ -7,13 +7,21 @@
 using namespace std;
 using namespace cv;
 
-int main() {
-    App* application = new App();
-    int key;
-    while (application->isRunning()) {
-        key = waitKey();
-        application->listen(key);
-    }
-    delete application;
+int main(int argc, char **argv) {
+
+    Mat image = imread("/home/juanda/CLionProjects/Proyecto-2-ImageRecovery-RentACar/Image Recovery/images/patron.png");
+
+    ImageOperations op(image);
+    vector<int> points =op.getPoints();
+
+    cout << op.getTotalRectanglePixels()<< endl;
+    cout << points[0]<< endl;
+    cout << points[1]<< endl;
+    cout << points[2]<< endl;
+    cout << points[3]<< endl;
+    cout << op.getTotalImagePixels()<< endl;
+
+
+    //Genetics genetics(15, op.getPoints());
     return 0;
 }

@@ -7,7 +7,7 @@
 Population::Population(vector<int> p) {
     this->num = 10;
     int totalPixels = (p[3]-p[1])*(p[4]-p[2]);
-    initializePopulation(p);
+    //initializePopulation(p);
 }
 
 void Population::initializePopulation(int imagePixels) {

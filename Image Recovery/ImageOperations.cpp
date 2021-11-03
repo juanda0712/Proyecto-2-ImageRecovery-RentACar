@@ -33,22 +33,26 @@ vector <Vec3b> ImageOperations::getColors() {
 }
 
 void ImageOperations::rectanglePoints(Mat myImage) {
-    for (int row = 0; row < myImage.rows; row++) {
+    bool  flag =false;
+    for (int row = 0; row < myImage.rows  & flag== false; row++) {
         for (int col = 0; col < myImage.cols; col++) {
             Vec3b pixel = myImage.at<Vec3b>(Point(col,row));
             if (pixel[0] == 255 & pixel[1] == 255 & pixel[2] == 255 ){
                 this->points.insert(points.cend(),col);
                 this->points.insert(points.cend(),row);
+                flag = true;
                 break;
             }
         }
     }
-    for (int row =  myImage.rows-1; row  > 0 ; row--) {
+    flag = false;
+    for (int row =  myImage.rows-1; row  > 0 & flag== false; row--) {
         for (int col = myImage.cols-1; col  > 0 ; col--) {
             Vec3b pixel = myImage.at<Vec3b>(Point(col,row));
             if (pixel[0] == 255 & pixel[1] == 255 & pixel[2] == 255 ){
                 this->points.insert(points.cend(),col);
                 this->points.insert(points.cend(),row);
+                flag = true;
                 break;
             }
         }
@@ -81,4 +85,11 @@ void ImageOperations::pixelsPercentage(){
         percentage = (this->quantityOfEachPixel[i]/this->totalImagePixels)*100;
         this->percentages.insert(percentages.cend(),percentage);
     }
+}
+
+int ImageOperations::getTotalImagePixels(){
+    return this->totalImagePixels;
+}
+int ImageOperations::getTotalRectanglePixels(){
+    return this->totalRectanglePixels;
 }
