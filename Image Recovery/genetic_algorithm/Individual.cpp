@@ -1,38 +1,29 @@
-//
-// Created by eduardo on 22/10/21.
-//
 
 #include "Individual.h"
 #include <iostream>
 
-Individual::Individual(int genes) {
-    this->genes = genes;
+Individual::Individual(int genesQuantity, vector<Vec3b> colorsList) {
+    this->genesQuantity = genesQuantity;
     this->fitness = 0;
     int flag;
-    for (int p = 0; p < genes; p++) {
-        flag = 1 + (rand() % 2);
-        if (flag == 1) {
-            this->chromosome.insert(chromosome.cend(), 1);
-        }
-        else {
-            this->chromosome.insert(chromosome.cend(), 0);
+    for (int p = 0; p < genesQuantity; p++) {
+        flag = rand() % colorsList.size();
+        this->genes.insert(genes.cend(), colorsList[flag]);
         }
     }
+void Individual::calculateIndFitness(){} //falta hacer el fitness
+
+void Individual::setFitness(int indFitness) {
+    this->fitness = indFitness;
 }
-
-vector<int> Individual::getChromosome() {
-    return this->chromosome;
-}
-
-int Individual::calculateIndFitness() {
-
+vector<Vec3b> Individual::getGenes() {
+    return this->genes;
 }
 
 int Individual::getFitness() {
-    cout << "returning fitness" << endl;
     return this->fitness;
 }
 
-int Individual::getGenes() {
-    return this->genes;
+int Individual::getGenesQuantity() {
+    return this->genesQuantity;
 }

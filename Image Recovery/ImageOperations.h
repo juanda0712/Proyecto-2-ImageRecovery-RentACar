@@ -21,24 +21,21 @@ private:
     int totalImagePixels;
     int totalRectanglePixels;
 
-    //Mat pixels
-    int numberOfDifferentColors();
-    void discardRedundantPixels();
 public:
     ImageOperations(Mat myImage);
     ~ImageOperations();
     void savePixels(Mat myImage);
     void rectanglePoints(Mat myImage);
-    void quantities(Mat myImage); // averigua la cantidad que hay de cada pixel (usa el vector quantityOfEachPixel)
+    void quantities(Mat myImage); // averigua la cantidad que hay de cada pixel (usa el vector quantityOfEachPixel para guardar los datos
     void pixelsPercentage();
 
     vector<Vec3b> getColors();
     vector<int> getPoints();
+    vector<int> getQuantityOfEachPixel();
+    vector<double> getPercentages();
 
     int getTotalImagePixels();
     int getTotalRectanglePixels();
-
-
 };
 
 #endif //IMAGE_RECOVERY_IMAGEOPERATIONS_H

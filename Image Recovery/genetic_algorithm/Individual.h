@@ -1,26 +1,26 @@
-//
-// Created by eduardo on 22/10/21.
-//
-
 #ifndef IMAGE_RECOVERY_INDIVIDUAL_H
 #define IMAGE_RECOVERY_INDIVIDUAL_H
 
 #include <vector>
-
+#include "opencv4/opencv2/opencv.hpp"
+using namespace cv;
 using namespace std;
 
 class Individual {
 private:
-    int genes;
+    int genesQuantity;
     int fitness;
-    vector<int> chromosome;
+    vector<Vec3b> genes;
 public:
-    Individual(int genes);
-    vector<int> getChromosome();
-    int calculateIndFitness();
+    Individual(int genesQuantity, vector<Vec3b> colorsList);
+    void calculateIndFitness();
+
+    //setters
+    void setFitness(int fitness);
+
+    //getters
+    vector<Vec3b> getGenes();
     int getFitness();
-    int getGenes();
+    int getGenesQuantity();
 };
-
-
 #endif //IMAGE_RECOVERY_INDIVIDUAL_H

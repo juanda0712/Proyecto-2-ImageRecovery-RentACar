@@ -1,7 +1,3 @@
-//
-// Created by eduardo on 22/10/21.
-//
-
 #ifndef IMAGE_RECOVERY_GENETICS_H
 #define IMAGE_RECOVERY_GENETICS_H
 

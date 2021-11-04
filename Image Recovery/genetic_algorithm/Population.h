@@ -11,12 +11,18 @@
 
 class Population {
 private:
-    int num;
-    Individual* individuals[10];
+    int num; //numero de poblacion
+    int individualsQuantity = 10;
+    Individual* individuals[10]; //cantidad de individuos
+
 public:
-    Population(vector<int> p);
-    void initializePopulation(int imagePixels);
+    Population(int genesQuantity, vector<Vec3b> colorsList);
     void calculateFitness();
+
+    //setters
+    void setNum();
+
+    //getters especiales
     Individual* getFittest();
     Individual* getSecondFittest();
 };

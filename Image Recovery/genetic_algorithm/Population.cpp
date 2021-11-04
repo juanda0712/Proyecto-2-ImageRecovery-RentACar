@@ -1,18 +1,8 @@
-//
-// Created by eduardo on 25/10/21.
-//
-
 #include "Population.h"
 
-Population::Population(vector<int> p) {
-    this->num = 10;
-    int totalPixels = (p[3]-p[1])*(p[4]-p[2]);
-    //initializePopulation(p);
-}
-
-void Population::initializePopulation(int imagePixels) {
+Population::Population(int genesQuantity, vector<Vec3b> colorsList) {
     for (auto & individual : this->individuals) {
-        individual = new Individual(imagePixels);
+        individual = new Individual(genesQuantity,colorsList);
     }
 }
 
@@ -23,10 +13,9 @@ void Population::calculateFitness() {
 }
 
 Individual* Population::getFittest() {
-    cout << "Getting fittest" << endl;
     int currentFitness = 0;
     int fit;
-    for (int i = 0; i < this->num; i++) {
+    for (int i = 0; i < individualsQuantity; i++) {
         if (this->individuals[i]->getFitness() > currentFitness) {
             currentFitness = this->individuals[i]->getFitness();
             fit = i;
@@ -36,5 +25,16 @@ Individual* Population::getFittest() {
 }
 
 Individual* Population::getSecondFittest() {
-    cout << "Getting secondFittest" << endl;
+    int currentFitness = 0;
+    int fit1=0;
+    int fit2;
+    for (int i = 0; i < individualsQuantity; i++) {
+
+        if (this->individuals[i]->getFitness() > currentFitness) {
+            currentFitness = this->individuals[i]->getFitness();
+            fit2 = fit1;
+            fit1 = i;
+        }
+    }
+    return this->individuals[fit2];
 }

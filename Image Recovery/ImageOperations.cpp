@@ -5,12 +5,15 @@ ImageOperations::ImageOperations(Mat myImage) {
     this->totalImagePixels = myImage.rows * myImage.cols;
     this->rectanglePoints(myImage);
     this->totalRectanglePixels = (this->points[2]-this->points[0])*(this->points[3]-this->points[1]);
+    //guada los colores de la img
     this->savePixels(myImage);
 
     //llena de ceros el vector con el mismo tamano del vector colorLIst
     for(int i = 0;  i < this->colorsList.size(); i++){
         this->quantityOfEachPixel.insert(quantityOfEachPixel.cend(),0);
     }
+    this->quantities(myImage);
+    this->pixelsPercentage();
 }
 
 ImageOperations::~ImageOperations() {
@@ -18,18 +21,16 @@ ImageOperations::~ImageOperations() {
 }
 
 void ImageOperations::savePixels(Mat myImage) {
-    for (int y = 0; y < myImage.rows; y++) {
-        for (int x = 0; x < myImage.cols; x++) {
-            Vec3b color = myImage.at<Vec3b>(Point(x,y));
-            if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
-                this->colorsList.push_back(color);
+    for (int row = 0; row < myImage.rows; row++) {
+        for (int col = 0; col < myImage.cols; col++) {
+            Vec3b color = myImage.at<Vec3b>(Point(col,row));
+            if(!(color[0]==255 & color[1]==255 & color[2]==255)){
+                if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
+                    this->colorsList.push_back(color);
+                }
             }
         }
     }
-}
-
-vector <Vec3b> ImageOperations::getColors() {
-    return this->colorsList;
 }
 
 void ImageOperations::rectanglePoints(Mat myImage) {
@@ -59,10 +60,6 @@ void ImageOperations::rectanglePoints(Mat myImage) {
     }
 }
 
-vector<int> ImageOperations::getPoints(){
-    return  this->points;
-}
-
 void ImageOperations::quantities(Mat myImage){
 
     for (int row = 0; row < myImage.rows; row++) {
@@ -81,15 +78,29 @@ void ImageOperations::quantities(Mat myImage){
 
 void ImageOperations::pixelsPercentage(){
     double percentage;
-    for (int i = 0; i < this->colorsList.size() ; ++i) {
-        percentage = (this->quantityOfEachPixel[i]/this->totalImagePixels)*100;
+    for (int i = 0; i < this->quantityOfEachPixel.size() ; i++) {
+        percentage = ((double)this->quantityOfEachPixel[i]/((double)this->totalImagePixels-(double)this->totalRectanglePixels))*100;
         this->percentages.insert(percentages.cend(),percentage);
     }
 }
 
+vector<int> ImageOperations::getPoints(){
+    return  this->points;
+}
 int ImageOperations::getTotalImagePixels(){
     return this->totalImagePixels;
 }
 int ImageOperations::getTotalRectanglePixels(){
     return this->totalRectanglePixels;
 }
+
+vector<int> ImageOperations::getQuantityOfEachPixel() {
+    return this->quantityOfEachPixel;
+}
+vector<double> ImageOperations::getPercentages() {
+    return this->percentages;
+}
+vector <Vec3b> ImageOperations::getColors() {
+    return this->colorsList;
+}
+

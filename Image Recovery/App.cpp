@@ -1,6 +1,3 @@
-//
-// Created by eduardo on 19/10/21.
-//
 
 #include "App.h"
 
