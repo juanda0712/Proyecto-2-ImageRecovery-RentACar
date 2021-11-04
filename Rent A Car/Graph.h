@@ -47,11 +47,10 @@ public:
     void setArista(vertice *start, vertice *end, int Km);
     void setVertice(string name);
     void adyList();
-    //void eliminateArista(vertice *start, vertice *end);
     void kill();
-    //void eliminateVertice()
     void createGraph(int num);
     void tracking(vertice *start, vertice *end);
+    //bool compare(pair<vertice*, int> a, pair<vertice*, int> b);
     void realTrack(vertice* start, vertice* end);
     string removeItem(string item, string list[]);
 

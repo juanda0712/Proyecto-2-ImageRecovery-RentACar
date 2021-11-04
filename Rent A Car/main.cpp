@@ -26,7 +26,7 @@ int main() {
     G.setArista(G.getVertice("MZT"), G.getVertice("BJX"), 300);
     G.setArista(G.getVertice("MTY"), G.getVertice("BJX"), 700);
     G.setArista(G.getVertice("BJX"), G.getVertice("SAN"), 900);
-    G.setArista(G.getVertice("BJX"), G.getVertice("TAM"), 400);
+    G.setArista(G.getVertice("BJX"), G.getVertice("TAM"), 450);
     G.setArista(G.getVertice("BJX"), G.getVertice("MEX"), 350);
     G.setArista(G.getVertice("GDL"), G.getVertice("MZT"), 500);
     G.setArista(G.getVertice("GDL"), G.getVertice("MTY"), 450);
@@ -41,7 +41,7 @@ int main() {
     //cout<<G.empty()<<endl;
     //G.adyList();
 
-    G.tracking(G.getVertice("TIJ"), G.getVertice("MID"));
+    G.realTrack(G.getVertice("TIJ"), G.getVertice("MID"));
 
 
     return 0;

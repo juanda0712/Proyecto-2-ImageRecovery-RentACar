@@ -220,3 +220,88 @@ void Graph::tracking(vertice *start, vertice *end) {
         cout<<"No se encontro ruta"<<endl;
     }
 }
+
+bool compare(pair<vertice *, int> a, pair<vertice *, int> b) {
+    return a.second < b.second;
+}
+
+void Graph::realTrack(vertice *start, vertice *end) {
+
+    int totalCost = 0, band, band2= 0;
+    vertice *Vnow, *Endnow;
+    arista *aux;
+    typedef pair<vertice*, int>Vcost;
+    typedef pair<vertice*, vertice*> VerticeVertice;
+    list<Vcost>listCost;
+    list<Vcost>listArray;
+    list<Vcost>::iterator i, j;
+    stack<VerticeVertice>pila;
+
+    listCost.push_back(Vcost(start, 0));
+    listArray.push_back(Vcost(start, 0));
+
+    while(!listArray.empty()){
+
+        Vnow = listArray.front().first;
+        totalCost = listArray.front().second;
+        listArray.pop_front();
+
+        if(Vnow == end){
+
+            cout<<"Costo total: "<<totalCost<<endl;
+            band2 = 1;
+            Endnow = end;
+
+            while(!pila.empty()){
+                cout<<Endnow->name<<"<-";
+
+                while(!pila.empty() && pila.top().second !=Endnow ){
+                    pila.pop();
+                }
+                if(!pila.empty()){
+                    Endnow = pila.top().first;
+                }
+            }
+            break;
+        }
+
+        aux = Vnow->ady;
+        while(aux != NULL){
+
+            band = 0;
+            totalCost = totalCost + aux->Gas;
+            for(i = listCost.begin();i != listCost.end(); i++){
+                if(aux->ady == i->first){
+
+                    band = 1;
+                    if(totalCost < i->second){
+                        (*i).second = totalCost;
+                        for(j = listArray.begin(); j != listArray.end(); j++){
+                            if(j->first == aux->ady){
+                                (*j).second = totalCost;
+                            }
+                        }
+                        listArray.sort(compare);
+                        pila.push(VerticeVertice(Vnow, aux->ady));
+                        cout<<"Ruta actual "<<totalCost<<endl;
+                        totalCost = totalCost - aux->Gas;
+                    }
+
+                }
+            }
+            if (band == 0){
+                listCost.push_back(Vcost(aux->ady, totalCost));
+                listArray.push_back(Vcost(aux->ady, totalCost));
+                listArray.sort(compare);
+                pila.push(VerticeVertice(Vnow, aux->ady));
+                cout<<"Ruta actual "<<totalCost<<endl;
+                totalCost = totalCost - aux->Gas;
+            }
+            aux = aux->sig;
+
+        }
+    }
+    if(band2 == 0){
+        cout<<"No hay rutas compatibles"<<endl;
+    }
+}
