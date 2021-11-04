@@ -3,12 +3,12 @@
 #include <utility>
 #include "iostream"
 
-Genetics::Genetics(int num, vector<int> p) {
+Genetics::Genetics(int numOfGenerations, int genesQuantity, vector<Vec3b> colorsList , vector<double> percentajes) {
+    this->percentajesRectangle = percentajes;
     this->fittest = nullptr;
     this->secondFittest = nullptr;
-    this->numOfGenerations = num;
-    this->pixels = p;
-    this->currentGen = new Population(p);
+    this->numOfGenerations = numOfGenerations;
+    this->currentGen = new Population(genesQuantity,colorsList);
 }
 
 Genetics::~Genetics() {
@@ -41,14 +41,39 @@ void Genetics::selection() {
 }
 
 void Genetics::crossover() {
-    cout << "Crossing" << endl;
-    for (int i = 0; i < fittest->getGenes()/2; i++) {
-        int temp = this->fittest->getChromosome()[i];
-        this->fittest->getChromosome()[i] = secondFittest->getChromosome()[i];
-        this->secondFittest->getChromosome()[i] = temp;
+    int lessReference=0;
+    int largerReference=0;
+    int diference=0;
+    int sumLessers=0;
+    int sumLargers=0;
+
+
+    for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {
+        if(this->fittest->getRectanglePercentages()[i] < this->percentajesRectangle[i]){
+            lessReference+=1;
+        }
+        if(this->fittest->getRectanglePercentages()[i] > this->percentajesRectangle[i]){
+            largerReference+=1;
+        }
+        }
+
+    for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {
+        if(this->fittest->getRectanglePercentages()[i] < this->percentajesRectangle[i]){
+            diference = abs(this->fittest->getRectanglePercentages()[i] - this->percentajesRectangle[i]);
+        }
+    }
+
+    for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {
+        if(this->fittest->getRectanglePercentages()[i] < this->percentajesRectangle[i]){
+
+        }
+        if(this->fittest->getRectanglePercentages()[i] > this->percentajesRectangle[i]){
+
+        }
     }
 }
 
+/*
 void Genetics::mutation() {
     cout << "Mutating" << endl;
     int mutationPoint = rand()%fittest->getGenes();
@@ -83,4 +108,4 @@ void Genetics::inversion() {
             secondFittest->getChromosome()[k] = 0;
         }
     }
-}
+}*/

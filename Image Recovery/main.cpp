@@ -30,6 +30,9 @@ int main(int argc, char **argv) {
     for (int i = 0; i <ind.getGenes().size() ; ++i) {
         cout << ind.getGenes()[i] << endl;
     }
+    for (int i = 0; i < ind.getRectanglePercentages().size() ; ++i) {
+        cout << "PIxel: " <<ind.getColors()[i] << " Cantidad: " << ind.getQuantityOfEachGen()[i] << " Porcentaje: " << ind.getRectanglePercentages()[i]<< "%"<<endl;
+    }
 
 
 

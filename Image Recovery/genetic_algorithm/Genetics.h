@@ -9,12 +9,12 @@ using namespace std;
 class Genetics {
 private:
     int numOfGenerations;
-    vector<int> pixels;
     Population* currentGen;
     Individual* fittest;
     Individual* secondFittest;
+    vector<double> percentajesRectangle;
 public:
-    Genetics(int num, vector<int> p);
+    Genetics(int numOfGenerations, int genesQuantity, vector<Vec3b> colorsList,vector<double> percentajes);
     ~Genetics();
     void geneticAlgorithm();
     void selection();
@@ -22,6 +22,4 @@ public:
     void mutation();
     void inversion();
 };
-
-
 #endif //IMAGE_RECOVERY_GENETICS_H
