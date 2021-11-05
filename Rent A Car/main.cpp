@@ -7,4 +7,5 @@ int main() {
     G.start();//inicia el grafo
     G.createGraph(6);
 
+
 }

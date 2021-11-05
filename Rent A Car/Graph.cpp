@@ -178,7 +178,7 @@ void Graph::createGraph(int num) { //crea el grafo con el numero de vertices ind
             if (aux[j] != auxName2){
                 vertice *start2 = getVertice(aux[j]);
                 vertice *end2 = getVertice(auxName2);
-                int gas = (rand() % 99) + 1;
+                int gas = (rand() % 900) + 100;
                 arista *arisAux;
                 arisAux = start2->ady;
                 bool esta = true;
