@@ -10,7 +10,12 @@ using namespace std;
 using namespace cv;
 
 int main(int argc, char **argv) {
-    App* imageRecovery = new App("/home/eduardo/Escritorio/Proyecto-2-ImageRecovery-RentACar/Image Recovery/imgsPrueba/1.png");
+    Mat image = imread("/home/juanda/CLionProjects/Proyecto-2-ImageRecovery-RentACar/Image Recovery/imgsPrueba/2.png");
+    ImageOperations op(image);
+    Genetics gen1(10,op.getTotalRectanglePixels(),op.getColors(),op.getPercentages());
+    vector<Individual> allFitest = gen1.geneticAlgorithm();
+
+    App* imageRecovery = new App(allFitest, image, op);
     int key;
     while (imageRecovery->isRunning()) {
         key = waitKey(0);

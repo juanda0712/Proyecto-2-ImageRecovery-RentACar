@@ -1,35 +1,25 @@
 #include "App.h"
 
-App::App(string fileName) {
-    this->index = 0;
+App::App(vector<Individual> allFitest, Mat img, ImageOperations ops) {
+    this->index = -1;
+    this->ops = &ops;
     this->running = true;
-    this->img = imread(fileName);
+    this->allFitest = allFitest;
+    this->img = img;
     initWindow();
-    initPtrs();
 }
 
 App::~App() {
-    delete this->genetic_engine;
     delete this->ops;
 }
 
-void App::initWindow() {
+void App::initWindow() { //imagen inicial
     namedWindow("My Image Recovery App", WINDOW_FREERATIO);
     imshow("My Image Recovery App", this->img);
 }
 
-void App::initPtrs() {
-    this->ops = new ImageOperations(this->img);
-    this->genetic_engine = new Genetics(20, ops->getTotalRectanglePixels(),ops->getColors(),ops->getPercentages());
-}
-
 bool App::isRunning() const {
     return this->running;
-}
-
-void App::begin() {
-    this->genFittests = this->genetic_engine->geneticAlgorithm();
-    //this->next();
 }
 
 void App::kill() {
@@ -46,7 +36,7 @@ void App::next() {
             }
         }
     }
-    imshow("My Image Recovery App", individual);
+    imshow("prueba", individual);
 }
 
 void App::listen(int key) {
@@ -54,11 +44,9 @@ void App::listen(int key) {
         this->kill();
     }
     else if (key == 13) {
-        this->begin();
-    }
-    else if (key == 'd') {
         this->index++;
+        std::cout << "Antes de next" << std::endl;
         this->next();
-        std::cout << "Next" << std::endl;
+        std::cout << "Despues de next" << std::endl;
     }
 }

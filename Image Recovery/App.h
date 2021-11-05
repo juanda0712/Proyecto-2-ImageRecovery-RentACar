@@ -17,17 +17,15 @@ using namespace cv;
 class App {
 private:
     Mat img;
-    Genetics* genetic_engine;
+    vector<Individual> allFitest;
     ImageOperations* ops;
     vector<Individual> genFittests;
     int index;
     bool running;
     void initWindow();
-    void initPtrs();
 public:
-    App(string fileName);
+    App(vector<Individual> allFitest, Mat img,ImageOperations ops);
     ~App();
-    void begin();
     void kill();
     void listen(int key);
     bool isRunning() const;
