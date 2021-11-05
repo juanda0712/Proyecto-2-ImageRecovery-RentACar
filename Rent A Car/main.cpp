@@ -1,6 +1,11 @@
 #include <iostream>
+#include "Graph.h"
+
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    Graph G;
+    G.start();//inicia el grafo
+    G.createGraph(6);
+
+
 }
