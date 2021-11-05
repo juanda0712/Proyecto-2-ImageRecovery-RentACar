@@ -1,7 +1,6 @@
 #include "App.h"
 
 App::App(vector<Individual> allFitest, Mat img, ImageOperations ops) {
-    this->index = -1;
     this->ops = &ops;
     this->running = true;
     this->allFitest = allFitest;
@@ -28,15 +27,16 @@ void App::kill() {
 }
 
 void App::next() {
-    Mat individual(ops->getPoints()[3]-ops->getPoints()[1], ops->getPoints()[2] - ops->getPoints()[0], CV_8UC3, Scalar(0,0,0));
-    for (Vec3b genes : this->genFittests[index].getGenes()) {
+
+    int fittestColor=0;
+    for (Vec3b genes : allFitest[1].getGenes()) {
         for (int r = ops->getPoints()[1]; r <= ops->getPoints()[3]; r++) {
             for (int c = ops->getPoints()[0]; c <= ops->getPoints()[2]; c++) {
-                individual.at<Vec3b>(Point(c,r)) = genes;
+                this->img.at<Vec3b>(Point(c,r)) = genes;
             }
         }
     }
-    imshow("prueba", individual);
+    imshow("My Image Recovery App", this->img);
 }
 
 void App::listen(int key) {
@@ -44,7 +44,6 @@ void App::listen(int key) {
         this->kill();
     }
     else if (key == 13) {
-        this->index++;
         std::cout << "Antes de next" << std::endl;
         this->next();
         std::cout << "Despues de next" << std::endl;

@@ -19,8 +19,6 @@ private:
     Mat img;
     vector<Individual> allFitest;
     ImageOperations* ops;
-    vector<Individual> genFittests;
-    int index;
     bool running;
     void initWindow();
 public:
