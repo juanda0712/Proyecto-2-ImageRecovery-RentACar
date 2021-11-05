@@ -116,7 +116,7 @@ void Graph::adyList() {
         arisAux = verAux->ady;
         while(arisAux != NULL){
 
-            cout<<arisAux->ady->name<<"->";
+            cout<<arisAux->ady->name<<" :: "<<arisAux->Gas<<"->";
             arisAux = arisAux->sig;
         }
         verAux = verAux->sig;
@@ -124,108 +124,65 @@ void Graph::adyList() {
     }
 }
 
-string Graph::removeItem(string item, string *list) {
-    int x = list->length();
-    string aux [x];
-    for (int i = 0; i <= x; i++){
-        if(list[i] != item){
-            //aux->insert;
+bool repeat(string name, int i, string* lista){
+    for (int x = 0; x != i; x++){
+        if(name == lista[x]){
+            return true;
         }
     }
-    cout<<aux[1]<<endl;
-    return aux[0];
+    return false;
 }
 
 void Graph::createGraph(int num) {
 
-    string names [] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-                       "K", "L"};
-    string aux [num];
+    bool band;
+    string names[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
+    string aux[num];
     int backup;
-    string auxName;
+    int i = 0, j = 0, k;
+    string auxName, auxName2;
     srand(time(NULL));
-    int i = 0;
-    int j = 0;
+
     if(num <= 0 or num > 12){
-        num = (rand()%25) + 1;
+        num = (rand()%11) + 1;
         cout<<"El numero que eligio no entra en los parametros por lo que se decidio el numero: "<<num<<endl;
     }
     while (i != num){
-        auxName = names[(rand()%26)];
-        aux->append(auxName);
-        setVertice(auxName);
-        backup = (rand()%99) + 1;
-        //cout<<backup<<endl;
-        i++;
-    }
-    //cout<<"*"<<num<<"*"<<endl;
-}
-
-void Graph::tracking(vertice *start, vertice *end) {
-
-    vertice* Vnow, *Endnow;
-    int band, band2, band3 = 0;
-    arista *aux;
-    typedef pair<vertice*, vertice*> VerticeVertice;
-    queue<vertice*>cola;
-    stack<VerticeVertice>pila;
-    list<vertice*>listaV;
-    list<vertice*>::iterator i;
-
-    cola.push(start);
-    while(!cola.empty()){
-        band = 0;
-        Vnow = cola.front();
-        cola.pop();
-        for(i=listaV.begin(); i != listaV.end(); i++){
-            if(Vnow == *i){
-                band = 1;
+        band = true;
+        auxName = names[(rand()%11)];
+        while (band){
+            if (!repeat(auxName, 12, aux)){
+                aux[i] = auxName;
+                setVertice(auxName);
+                band = false;
+                i++;
+            }
+            else{
+                auxName = names[(rand()%11)];
             }
         }
-        if (band == 0){
-            if(Vnow == end){
-                band3 = 1;
-                Endnow = end;
-
-                while(!pila.empty()){
-                    cout<<Endnow->name <<"<-";
-
-                    while(!pila.empty() && pila.top().second != Endnow){
-                        pila.pop();
-                    }
-                    if(!pila.empty()){
-                        Endnow = pila.top().first;
-                    }
-                }
-            }
-            listaV.push_back(Vnow);
-            aux = Vnow->ady;
-            while(aux != NULL){
-                band2= 0;
-                for(i = listaV.begin();i != listaV.end();i++){
-                    if(aux->ady == *i){
-                        band2 = 1;
-                    }
-                }
-                if (band2 == 0){
-                    cola.push(aux->ady);
-                    pila.push(VerticeVertice(Vnow,aux->ady));
-                }
-                aux = aux->sig;
+    }
+    for (int z = 0; z != num; z++){
+    }
+    while (j != num){
+        k = 0;
+        while (k != 5){
+            auxName2 = aux[rand()%(num - 1)];
+            if (aux[j] != auxName2){
+                setArista(getVertice(aux[j]), getVertice(auxName2), rand()%99 );
+                k++;
             }
         }
-
+        j++;
     }
-    if (band3 == 0){
-        cout<<"No se encontro ruta"<<endl;
-    }
+    adyList();
 }
 
 bool compare(pair<vertice *, int> a, pair<vertice *, int> b) {
     return a.second < b.second;
 }
 
-void Graph::realTrack(vertice *start, vertice *end) {
+void Graph::backtracking(vertice *start, vertice *end) {
 
     int totalCost = 0, band, band2= 0;
     vertice *Vnow, *Endnow;
@@ -284,6 +241,7 @@ void Graph::realTrack(vertice *start, vertice *end) {
                         listArray.sort(compare);
                         pila.push(VerticeVertice(Vnow, aux->ady));
                         cout<<"Ruta actual "<<totalCost<<endl;
+                        cout<<" "<<endl;
                         totalCost = totalCost - aux->Gas;
                     }
 
@@ -295,6 +253,7 @@ void Graph::realTrack(vertice *start, vertice *end) {
                 listArray.sort(compare);
                 pila.push(VerticeVertice(Vnow, aux->ady));
                 cout<<"Ruta actual "<<totalCost<<endl;
+                cout<<" "<<endl;
                 totalCost = totalCost - aux->Gas;
             }
             aux = aux->sig;
@@ -304,4 +263,8 @@ void Graph::realTrack(vertice *start, vertice *end) {
     if(band2 == 0){
         cout<<"No hay rutas compatibles"<<endl;
     }
+}
+void Graph::kill() {
+    string names[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
+    cout<<repeat("FD", 12, names)<<endl;
 }

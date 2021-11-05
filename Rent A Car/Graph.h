@@ -48,11 +48,11 @@ public:
     void setVertice(string name);
     void adyList();
     void kill();
-    void createGraph(int num);
-    void tracking(vertice *start, vertice *end);
+
+    [[noreturn]] void createGraph(int num);
+   // void tracking(vertice *start, vertice *end);
     //bool compare(pair<vertice*, int> a, pair<vertice*, int> b);
-    void realTrack(vertice* start, vertice* end);
-    string removeItem(string item, string list[]);
+    void backtracking(vertice* start, vertice* end);
 
 private:
     vertice *h;
