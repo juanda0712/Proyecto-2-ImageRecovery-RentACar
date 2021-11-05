@@ -3,6 +3,7 @@
 ImageOperations::ImageOperations(Mat myImage) {
     this->image = myImage;
     this->totalImagePixels = myImage.rows * myImage.cols;
+    cout << totalImagePixels << endl;
     this->rectanglePoints(myImage);
     this->totalRectanglePixels = (this->points[2]-this->points[0])*(this->points[3]-this->points[1]);
     //guada los colores de la img

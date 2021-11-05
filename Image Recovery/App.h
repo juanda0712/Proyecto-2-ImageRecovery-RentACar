@@ -19,6 +19,8 @@ private:
     Mat img;
     Genetics* genetic_engine;
     ImageOperations* ops;
+    vector<Individual> genFittests;
+    int index;
     bool running;
     void initWindow();
     void initPtrs();
@@ -28,7 +30,8 @@ public:
     void begin();
     void kill();
     void listen(int key);
-    bool isRunning();
+    bool isRunning() const;
+    void next();
 };
 
 

@@ -28,6 +28,7 @@ vector<Individual> Genetics::geneticAlgorithm() {
     cout<< "Antes del while"<< endl;
 
     while (this->numOfGenerations > 0) {
+        cout << "En el while" << endl;
         this->selection();
         this->allFittest.insert(allFittest.cend(), *fittest);
 
@@ -46,6 +47,7 @@ vector<Individual> Genetics::geneticAlgorithm() {
         currentGen->calculateFitness(percentajesRectangle);
         this->numOfGenerations--;
     }
+    cout << "return" << endl;
     return this->allFittest;
 }
 

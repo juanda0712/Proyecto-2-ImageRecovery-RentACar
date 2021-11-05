@@ -1,8 +1,9 @@
 #include "App.h"
-/*
+
 App::App(string fileName) {
+    this->index = 0;
     this->running = true;
-    img = imread(fileName);
+    this->img = imread(fileName);
     initWindow();
     initPtrs();
 }
@@ -13,8 +14,7 @@ App::~App() {
 }
 
 void App::initWindow() {
-    namedWindow("My Image Recovery App");
-    putText(this->img, "My App", Point(250,10), 1,50, Scalar(0,0,0), 5);
+    namedWindow("My Image Recovery App", WINDOW_FREERATIO);
     imshow("My Image Recovery App", this->img);
 }
 
@@ -23,17 +23,30 @@ void App::initPtrs() {
     this->genetic_engine = new Genetics(20, ops->getTotalRectanglePixels(),ops->getColors(),ops->getPercentages());
 }
 
-bool App::isRunning() {
+bool App::isRunning() const {
     return this->running;
 }
 
 void App::begin() {
-    this->genetic_engine->geneticAlgorithm(&this->img);
+    this->genFittests = this->genetic_engine->geneticAlgorithm();
+    //this->next();
 }
 
 void App::kill() {
     destroyAllWindows();
     this->running = false;
+}
+
+void App::next() {
+    Mat individual(ops->getPoints()[3]-ops->getPoints()[1], ops->getPoints()[2] - ops->getPoints()[0], CV_8UC3, Scalar(0,0,0));
+    for (Vec3b genes : this->genFittests[index].getGenes()) {
+        for (int r = ops->getPoints()[1]; r <= ops->getPoints()[3]; r++) {
+            for (int c = ops->getPoints()[0]; c <= ops->getPoints()[2]; c++) {
+                individual.at<Vec3b>(Point(c,r)) = genes;
+            }
+        }
+    }
+    imshow("My Image Recovery App", individual);
 }
 
 void App::listen(int key) {
@@ -44,11 +57,8 @@ void App::listen(int key) {
         this->begin();
     }
     else if (key == 'd') {
-        genetic_engine->updateFlag(true);
+        this->index++;
+        this->next();
         std::cout << "Next" << std::endl;
     }
-    else if (key == 'a') {
-        std::cout << "Previous" << std::endl;
-    }
 }
-*/
