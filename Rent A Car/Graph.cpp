@@ -255,7 +255,7 @@ void Graph::backtracking(vertice *start, vertice *end) { //encuentra la ruta mas
 
             while(!pila.empty()){
                 std::cout<<Endnow->name<<"<-";
-
+                ventana.final = ventana.final + Endnow->name + "...";
                 while(!pila.empty() && pila.top().second !=Endnow ){
                     pila.pop();
                 }

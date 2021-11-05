@@ -14,84 +14,7 @@ bool ciudades = true;
 sf::RenderWindow window(sf::VideoMode(900,700),"Hola");
 
 void Ventana::inicio() {
-    //arista[0] = conectarpuntos(puntos[0],puntos[1]);;
-    /*arista[1] = conectarpuntos(puntos[0],puntos[2]);;
-    arista[2] = conectarpuntos(puntos[0],puntos[3]);;
-    arista[3] = conectarpuntos(puntos[0],puntos[4]);;
-    arista[4] = conectarpuntos(puntos[0],puntos[5]);;
-    arista[5] = conectarpuntos(puntos[0],puntos[6]);;
-    arista[6] = conectarpuntos(puntos[0],puntos[7]);;
-    arista[7] = conectarpuntos(puntos[0],puntos[8]);;
-    arista[8] = conectarpuntos(puntos[0],puntos[9]);;
-    arista[9] = conectarpuntos(puntos[0],puntos[10]);;
-    arista[10] = conectarpuntos(puntos[0],puntos[11]);;
 
-    arista[11] = conectarpuntos(puntos[1],puntos[2]);;
-    arista[12] = conectarpuntos(puntos[1],puntos[3]);;
-    arista[13] = conectarpuntos(puntos[1],puntos[4]);;
-    arista[14] = conectarpuntos(puntos[1],puntos[5]);;
-    arista[15] = conectarpuntos(puntos[1],puntos[6]);;
-    arista[16] = conectarpuntos(puntos[1],puntos[7]);;
-    arista[17] = conectarpuntos(puntos[1],puntos[8]);;
-    arista[18] = conectarpuntos(puntos[1],puntos[9]);;
-    arista[19] = conectarpuntos(puntos[1],puntos[10]);;
-    arista[20] = conectarpuntos(puntos[1],puntos[11]);;
-
-    arista[21] = conectarpuntos(puntos[2],puntos[3]);;
-    arista[22] = conectarpuntos(puntos[2],puntos[4]);;
-    arista[23] = conectarpuntos(puntos[2],puntos[5]);;
-    arista[24] = conectarpuntos(puntos[2],puntos[6]);;
-    arista[25] = conectarpuntos(puntos[2],puntos[7]);;
-    arista[26] = conectarpuntos(puntos[2],puntos[8]);;
-    arista[27] = conectarpuntos(puntos[2],puntos[9]);;
-    arista[28] = conectarpuntos(puntos[2],puntos[10]);;
-    arista[29] = conectarpuntos(puntos[2],puntos[11]);;
-
-    arista[30] = conectarpuntos(puntos[3],puntos[4]);;
-    arista[31] = conectarpuntos(puntos[3],puntos[5]);;
-    arista[32] = conectarpuntos(puntos[3],puntos[6]);;
-    arista[33] = conectarpuntos(puntos[3],puntos[7]);;
-    arista[34] = conectarpuntos(puntos[3],puntos[8]);;
-    arista[35] = conectarpuntos(puntos[3],puntos[9]);;
-    arista[36] = conectarpuntos(puntos[3],puntos[10]);;
-    arista[37] = conectarpuntos(puntos[3],puntos[11]);;
-
-    arista[38] = conectarpuntos(puntos[4],puntos[5]);;
-    arista[39] = conectarpuntos(puntos[4],puntos[6]);;
-    arista[40] = conectarpuntos(puntos[4],puntos[7]);;
-    arista[41] = conectarpuntos(puntos[4],puntos[8]);;
-    arista[42] = conectarpuntos(puntos[4],puntos[9]);;
-    arista[43] = conectarpuntos(puntos[4],puntos[10]);;
-    arista[44] = conectarpuntos(puntos[4],puntos[11]);;
-
-    arista[45] = conectarpuntos(puntos[5],puntos[6]);;
-    arista[46] = conectarpuntos(puntos[5],puntos[7]);;
-    arista[47] = conectarpuntos(puntos[5],puntos[8]);;
-    arista[48] = conectarpuntos(puntos[5],puntos[9]);;
-    arista[49] = conectarpuntos(puntos[5],puntos[10]);;
-    arista[50] = conectarpuntos(puntos[5],puntos[11]);;
-
-    arista[51] = conectarpuntos(puntos[6],puntos[7]);;
-    arista[52] = conectarpuntos(puntos[6],puntos[8]);;
-    arista[53] = conectarpuntos(puntos[6],puntos[9]);;
-    arista[54] = conectarpuntos(puntos[6],puntos[10]);;
-    arista[55] = conectarpuntos(puntos[6],puntos[11]);;
-
-    arista[56] = conectarpuntos(puntos[7],puntos[8]);;
-    arista[57] = conectarpuntos(puntos[7],puntos[9]);;
-    arista[58] = conectarpuntos(puntos[7],puntos[10]);;
-    arista[59] = conectarpuntos(puntos[7],puntos[11]);;
-
-    arista[60] = conectarpuntos(puntos[8],puntos[9]);;
-    arista[61] = conectarpuntos(puntos[8],puntos[10]);;
-    arista[62] = conectarpuntos(puntos[8],puntos[11]);;
-
-    arista[63] = conectarpuntos(puntos[9],puntos[10]);;
-    arista[64] = conectarpuntos(puntos[9],puntos[11]);;
-
-    arista[65] = conectarpuntos(puntos[10],puntos[11]);;*/
-
-    //arista[0] = conectarpuntos(puntos[0],puntos[1]);;
 
     font.loadFromFile("../Minecrafter.ttf");
 
@@ -348,6 +271,8 @@ void Ventana::inicio() {
 
 
 
+        text.setFont(font);
+        text.setString(final),text.setCharacterSize(20),text.setFillColor(sf::Color::Green),text.setPosition(0,00),window.draw(text);
 
         //
         window.display();

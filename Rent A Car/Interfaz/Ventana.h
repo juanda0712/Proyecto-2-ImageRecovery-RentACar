@@ -30,6 +30,7 @@ public:
     sf::Text text;
     int seleccion[2];
     Calle arista[70];
+    std::string final = "Mejor ruta: ";
 
 
 
