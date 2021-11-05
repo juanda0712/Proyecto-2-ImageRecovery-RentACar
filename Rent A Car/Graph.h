@@ -10,6 +10,7 @@
 #include <queue>
 #include <list>
 #include <stack>
+#include <string>
 using namespace std;
 
 class arista;
@@ -47,11 +48,7 @@ public:
     void setArista(vertice *start, vertice *end, int Km);
     void setVertice(string name);
     void adyList();
-    void kill();
-
-    [[noreturn]] void createGraph(int num);
-   // void tracking(vertice *start, vertice *end);
-    //bool compare(pair<vertice*, int> a, pair<vertice*, int> b);
+    void createGraph(int num);
     void backtracking(vertice* start, vertice* end);
 
 private:

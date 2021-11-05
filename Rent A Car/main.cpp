@@ -3,9 +3,8 @@
 
 
 int main() {
-    string list[] = {"1", "2", "3", "4"};
     Graph G;
-    G.start();
+    G.start();//inicia el grafo
 
     //g.removeItem("4", list);
 
