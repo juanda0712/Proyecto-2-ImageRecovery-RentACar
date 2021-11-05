@@ -14,11 +14,14 @@ private:
     int num; //numero de poblacion
     int individualsQuantity = 10;
     Individual* individuals[10]; //cantidad de individuos
+    int genesQuantity;
+    vector<Vec3b> colorsList;
 
 
 public:
     Population(int genesQuantity, vector<Vec3b> colorsList);
     void calculateFitness(vector<double> percentages);
+    void addCrossoverIndividual(Individual* crossoverIndividual);
 
     //setters
     void setNum();

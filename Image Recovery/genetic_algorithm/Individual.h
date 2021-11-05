@@ -17,6 +17,7 @@ private:
 
 public:
     Individual(int genesQuantity, vector<Vec3b> colorsList);
+    Individual(int genesQuantity, vector<Vec3b> colorsList, vector<double> crossoverIndPercentajes);
     void calculateIndFitness(vector<double> percentages);
     void  pixelsPercentage();
     void quantities();

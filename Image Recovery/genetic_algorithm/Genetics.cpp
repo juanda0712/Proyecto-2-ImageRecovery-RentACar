@@ -22,17 +22,13 @@ Genetics::~Genetics() {
 }
 
 vector<Individual> Genetics::geneticAlgorithm() {
-    currentGen->calculateFitness(percentajesRectangle);
-    cout<< "calculo el Fitness"<< endl;
     vector<double> crossoverIndPercentajes;
-    cout<< "Antes del while"<< endl;
 
     while (this->numOfGenerations > 0) {
-        cout << "En el while" << endl;
+        currentGen->calculateFitness(percentajesRectangle);
         this->selection();
         this->allFittest.insert(allFittest.cend(), *fittest);
-
-        crossoverIndPercentajes = this->crossover();     // se lo debo pasar a Population como parametro
+        crossoverIndPercentajes = this->crossover();
 
         /*
         if (1 + (rand() % 7) < 5) {
@@ -43,11 +39,11 @@ vector<Individual> Genetics::geneticAlgorithm() {
         }*/
 
         currentGen = new Population(this->genesQuantity,this->colorsList);
-        //falta agregar el individuo fitness de la generacion anterior
         currentGen->calculateFitness(percentajesRectangle);
+        //Individual crossoverIndividual(this->genesQuantity,this->colorsList,crossoverIndPercentajes);
+        //currentGen->addCrossoverIndividual(&crossoverIndividual);
         this->numOfGenerations--;
     }
-    cout << "return" << endl;
     return this->allFittest;
 }
 
@@ -59,7 +55,7 @@ void Genetics::selection() {
 vector<double> Genetics::crossover() {
     int lessReference=0;
     int largerReference=0;
-    int diference=0;
+    double diference=0;
     vector<double> IndPercentajes = this->fittest->getRectanglePercentages();
 
     for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {  // saca la cantidad de menores y mayores al de referencia
@@ -80,7 +76,7 @@ vector<double> Genetics::crossover() {
     for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {
         if(this->fittest->getRectanglePercentages()[i] < this->percentajesRectangle[i]){
             if(fittest->getRectanglePercentages().size() == 2){
-                IndPercentajes[i] += diference / (double)2;
+                IndPercentajes[i] += diference / (double)3;
             } else{
                 IndPercentajes[i] += diference / (double)lessReference;
             }
@@ -88,7 +84,7 @@ vector<double> Genetics::crossover() {
         }
         if(this->fittest->getRectanglePercentages()[i] > this->percentajesRectangle[i]){
             if(fittest->getRectanglePercentages().size() == 2){
-                IndPercentajes[i] -= diference / (double)2;
+                IndPercentajes[i] -= diference / (double)3;
             }else{
                 IndPercentajes[i] -= diference / (double)largerReference;
             }

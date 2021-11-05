@@ -44,8 +44,6 @@ void App::listen(int key) {
         this->kill();
     }
     else if (key == 13) {
-        std::cout << "Antes de next" << std::endl;
         this->next();
-        std::cout << "Despues de next" << std::endl;
     }
 }

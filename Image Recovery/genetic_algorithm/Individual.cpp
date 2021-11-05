@@ -1,6 +1,7 @@
 
 #include "Individual.h"
 #include "stdlib.h"
+#include "cmath"
 
 Individual::Individual(int genesQuantity, vector<Vec3b> colorsList) {
     this->colorsList = colorsList;
@@ -20,6 +21,42 @@ Individual::Individual(int genesQuantity, vector<Vec3b> colorsList) {
     this->quantities();
     this->pixelsPercentage();
     }
+Individual::Individual(int genesQuantity, vector<Vec3b> colorsList, vector<double> crossoverIndPercentajes){
+    this->fitness = 0;
+    this->colorsList = colorsList;
+    this->genesQuantity = genesQuantity;
+
+
+    for(int i = 0;  i < this->colorsList.size(); i++){
+        double quantity = (double)genesQuantity*(crossoverIndPercentajes[i]/(double)100);
+        this->quantityOfEachGen.insert(quantityOfEachGen.cend(),(int)round(quantity));
+    }
+
+    Vec3b white;
+    white[0]=255;
+    white[1]=255;
+    white[2]=255;
+
+
+    for (int i = 0; i < genesQuantity; i++) {
+        this->genes.insert(genes.cend(),white);
+    }
+
+    for (int i = 0; i < colorsList.size()  ; i++) {
+        int running = this->quantityOfEachGen[i];
+        int pos;
+        Vec3b  color = colorsList[i];
+        while(running != 0){
+            pos = rand() % genesQuantity;
+            if(this->genes[pos][0]==255 & this->genes[pos][1]==255 & this->genes[pos][2]==255){
+                this->genes[pos] = color;
+                running--;
+            }
+        }
+    }
+    this->pixelsPercentage();
+}
+
 
 void Individual::quantities(){
     for (int i = 0; i < this->genesQuantity; i++) {

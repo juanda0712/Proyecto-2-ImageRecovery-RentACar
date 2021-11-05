@@ -6,10 +6,8 @@ ImageOperations::ImageOperations(Mat myImage) {
     cout << totalImagePixels << endl;
     this->rectanglePoints(myImage);
     this->totalRectanglePixels = (this->points[2]-this->points[0])*(this->points[3]-this->points[1]);
-    //guada los colores de la img
     this->savePixels(myImage);
 
-    //llena de ceros el vector con el mismo tamano del vector colorLIst
     for(int i = 0;  i < this->colorsList.size(); i++){
         this->quantityOfEachPixel.insert(quantityOfEachPixel.cend(),0);
     }
@@ -25,9 +23,6 @@ void ImageOperations::savePixels(Mat myImage) {
     for (int row = 0; row < myImage.rows; row++) {
         for (int col = 0; col < myImage.cols; col++) {
             Vec3b color = myImage.at<Vec3b>(Point(col,row));
-            /*if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
-                this->colorsList.push_back(color);
-            }*/
             if(!(color[0]==255 & color[1]==255 & color[2]==255)){
                 if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
                     this->colorsList.push_back(color);

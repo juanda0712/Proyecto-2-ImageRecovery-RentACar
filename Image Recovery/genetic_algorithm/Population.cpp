@@ -1,10 +1,13 @@
 #include "Population.h"
 
 Population::Population(int genesQuantity, vector<Vec3b> colorsList) {
+    this->genesQuantity = genesQuantity;
+    this->colorsList = colorsList;
     for (auto & individual : this->individuals) {
         individual = new Individual(genesQuantity,colorsList);
     }
 }
+
 
 void Population::calculateFitness(vector<double> percentages) {
     for (auto & individual : this->individuals) {
@@ -36,4 +39,17 @@ Individual* Population::getSecondFittest() {
         }
     }
     return this->individuals[fit2];
+}
+
+void Population::addCrossoverIndividual(Individual* crossoverIndividual){
+    int lesserFitness =0;
+    int fit;
+    for (int i = 0; i < individualsQuantity; i++) {
+        if (this->individuals[i]->getFitness() > lesserFitness) {
+            lesserFitness = this->individuals[i]->getFitness();
+            fit = i;
+        }
+    }
+     this->individuals[fit] = crossoverIndividual;
+
 }
