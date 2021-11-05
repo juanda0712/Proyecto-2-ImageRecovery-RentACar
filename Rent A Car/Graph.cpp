@@ -49,7 +49,7 @@ vertice *Graph::getVertice(string name) { //retorna el vertice buscado
     return NULL;
 }
 
-void Graph::setVertice(string name) { // dado un nombre crea un vertice
+void Graph::setVertice(string name, int value) { // dado un nombre crea un vertice
 
     vertice *newCity = new vertice; //crea un vertice
     newCity -> name = name; //se le asigna el nombre dado en los parametros al vertice
@@ -152,7 +152,7 @@ void Graph::createGraph(int num) { //crea el grafo con el numero de vertices ind
         while (band){
             if (!repeat(auxName, 12, aux)){
                 aux[i] = auxName;
-                setVertice(auxName);
+                setVertice(auxName, i);
                 band = false;
                 i++;
             }

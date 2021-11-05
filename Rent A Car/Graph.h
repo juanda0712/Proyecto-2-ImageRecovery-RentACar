@@ -46,7 +46,7 @@ public:
     int size();
     vertice *getVertice(string name);
     void setArista(vertice *start, vertice *end, int Km);
-    void setVertice(string name);
+    void setVertice(string name, int value);
     void adyList();
     void createGraph(int num);
     void backtracking(vertice* start, vertice* end);
