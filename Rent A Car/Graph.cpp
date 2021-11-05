@@ -178,7 +178,7 @@ void Graph::createGraph(int num) { //crea el grafo con el numero de vertices ind
             if (aux[j] != auxName2){
                 vertice *start2 = getVertice(aux[j]);
                 vertice *end2 = getVertice(auxName2);
-                int gas = (rand() % 900) + 100;
+                int gas = (rand() % 99) + 1;
                 arista *arisAux;
                 arisAux = start2->ady;
                 bool esta = true;
@@ -299,7 +299,7 @@ void Graph::backtracking(vertice *start, vertice *end) { //encuentra la ruta mas
                 std::cout<<Vnow->name<<":"<<Vnow->value<<" -> "<<aux->ady->name<<":"<<aux->ady->value <<std::endl;
                 std::cout<<"Ruta actual "<<totalCost<<std::endl;
                 ventana.pintacalle(Vnow->value,aux->ady->value,"90");
-                sf::sleep(sf::milliseconds(5000));
+                sf::sleep(sf::milliseconds(1000));
 
                 std::cout<<" "<<std::endl;
                 totalCost = totalCost - aux->Gas;

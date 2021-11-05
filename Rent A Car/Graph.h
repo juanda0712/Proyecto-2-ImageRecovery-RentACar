@@ -60,11 +60,6 @@ public:
      * @return cuanto mide el grafo
      */
     int size();
-<<<<<<< HEAD
-    vertice *getVertice(std::string name);
-    void setArista(vertice *start, vertice *end, int Km);
-    void setVertice(std::string name,int value2);
-=======
     /**
      * @brief busca y retorna el vectopr buscado
      * @param name un string con el nombre del vector
@@ -87,7 +82,7 @@ public:
     /**
      * @brief imprime en consola la lista de adyacencia de cada vector
      */
->>>>>>> rent-a-car
+
     void adyList();
     /**
      * @brief crea el grafo de forma aleatoria con el numero de vectores brindado

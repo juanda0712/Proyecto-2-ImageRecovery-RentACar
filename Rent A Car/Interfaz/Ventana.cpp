@@ -16,7 +16,7 @@ sf::RenderWindow window(sf::VideoMode(900,700),"Hola");
 void Ventana::inicio() {
 
 
-    font.loadFromFile("../Minecrafter.ttf");
+    font.loadFromFile("/home/juanda/CLionProjects/Proyecto-2-ImageRecovery-RentACar/Rent A Car/Interfaz/Minecrafter.ttf");
 
 
 
@@ -939,7 +939,7 @@ void Ventana::menu() {
     while (window.isOpen())
     {
         sf::Font font2;
-        font2.loadFromFile("../Minecrafter.ttf");
+        font2.loadFromFile("/home/juanda/CLionProjects/Proyecto-2-ImageRecovery-RentACar/Rent A Car/Interfaz/Minecrafter.ttf");
         sf::Text text2;
         text2.setFont(font2);
         sf::Event event{};
