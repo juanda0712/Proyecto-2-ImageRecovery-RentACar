@@ -20,7 +20,8 @@ class vertice{
     vertice *sig;
     arista *ady;
     friend class Graph;
-
+public:
+    int value;
 private:
     string name;
 
@@ -44,9 +45,9 @@ public:
     void start();
     bool empty();
     int size();
-    vertice *getVertice(string name);
+    vertice *getVertice(std::string name);
     void setArista(vertice *start, vertice *end, int Km);
-    void setVertice(string name, int value);
+    void setVertice(std::string name,int value2);
     void adyList();
     void createGraph(int num);
     void backtracking(vertice* start, vertice* end);
