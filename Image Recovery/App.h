@@ -14,6 +14,12 @@
 
 using namespace cv;
 
+/**
+ * @brief App es la interfaz grafica que se utiliza para representar los individuos
+ *@file App.h
+ * @date 4/11/21
+ * @author JuanRm EduardoBM
+ */
 class App {
 private:
     Mat img;
