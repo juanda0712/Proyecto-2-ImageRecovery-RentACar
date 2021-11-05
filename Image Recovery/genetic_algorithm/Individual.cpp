@@ -90,9 +90,6 @@ void Individual::pixelsPercentage(){
     this->fitness = (int)sumDifferences;
 }
 
-void Individual::setFitness(int indFitness) {
-    this->fitness = indFitness;
-}
 vector<Vec3b> Individual::getGenes() {
     return this->genes;
 }

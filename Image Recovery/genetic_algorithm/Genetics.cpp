@@ -30,14 +30,6 @@ vector<Individual> Genetics::geneticAlgorithm() {
         this->allFittest.insert(allFittest.cend(), *fittest);
         crossoverIndPercentajes = this->crossover();
 
-        /*
-        if (1 + (rand() % 7) < 5) {
-            this->mutation();
-        }
-        if (1 + (rand()%50) < 5) {
-            this->inversion();
-        }*/
-
         currentGen = new Population(this->genesQuantity,this->colorsList);
         currentGen->calculateFitness(percentajesRectangle);
         //Individual crossoverIndividual(this->genesQuantity,this->colorsList,crossoverIndPercentajes);
@@ -93,40 +85,4 @@ vector<double> Genetics::crossover() {
     return IndPercentajes;
 }
 
-/*
-void Genetics::mutation() {
-    cout << "Mutating" << endl;
-    int mutationPoint = rand()%fittest->getGenes();
-    if (this->fittest->getChromosome()[mutationPoint] == 1) {
-        this->fittest->getChromosome()[mutationPoint] = 0;
-    }
-    else {
-        this->fittest->getChromosome()[mutationPoint] = 1;
-    }
-    mutationPoint = rand()%secondFittest->getGenes();
-    if (this->secondFittest->getChromosome()[mutationPoint] == 1) {
-        this->secondFittest->getChromosome()[mutationPoint] = 0;
-    }
-    else {
-        this->secondFittest->getChromosome()[mutationPoint] = 1;
-    }
-}
-
-void Genetics::inversion() {
-    cout << "Inverting" << endl;
-    int inversionHalf = rand()%fittest->getGenes()/2;
-    for (int k = inversionHalf; k < fittest->getGenes(); k++) {
-        fittest->getChromosome()[k]++;
-        if (fittest->getChromosome()[k] > 1) {
-            fittest->getChromosome()[k] = 0;
-        }
-    }
-    inversionHalf = rand()%secondFittest->getGenes()/2;
-    for (int k = inversionHalf; k < secondFittest->getGenes(); k++) {
-        secondFittest->getChromosome()[k]++;
-        if (secondFittest->getChromosome()[k] > 1) {
-            secondFittest->getChromosome()[k] = 0;
-        }
-    }
-}*/
 
