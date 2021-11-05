@@ -9,8 +9,8 @@ Individual::Individual(int genesQuantity, vector<Vec3b> colorsList) {
     for(int i = 0;  i < this->colorsList.size(); i++){
         this->quantityOfEachGen.insert(quantityOfEachGen.cend(),0);
     }
-    int flag;
 
+    int flag;
     for (int p = 0; p < genesQuantity; p++) {
         flag = rand() % colorsList.size();
         Vec3b color = colorsList[flag];
@@ -37,10 +37,21 @@ void Individual::pixelsPercentage(){
     double percentage;
     for (int i = 0; i < this->quantityOfEachGen.size() ; i++) {
         percentage = ((double)this->quantityOfEachGen[i]/(double)this->genes.size())*100;
-        this->RectanglePercentages.insert(RectanglePercentages.cend(),percentage);
+        this->IndividualPercentages.insert(IndividualPercentages.cend(),percentage);
     }
 }
-void Individual::calculateIndFitness(){} //falta hacer el fitness
+
+    void Individual::calculateIndFitness(vector<double> percentages){
+    double fitnessCase = 10 * this->IndividualPercentages.size();
+    double difference;
+    double sumDifferences = 0;
+
+    for (int i = 0; i < percentages.size() ; ++i) {
+        difference = abs(this->IndividualPercentages[i]-percentages[i]);
+        sumDifferences += difference;
+    }
+    this->fitness = (int)sumDifferences;
+}
 
 void Individual::setFitness(int indFitness) {
     this->fitness = indFitness;
@@ -60,7 +71,7 @@ vector<int> Individual::getQuantityOfEachGen() {
     return this->quantityOfEachGen;
 }
 vector<double> Individual::getRectanglePercentages() {
-    return this->RectanglePercentages;
+    return this->IndividualPercentages;
 }
 vector <Vec3b> Individual::getColors() {
     return this->colorsList;

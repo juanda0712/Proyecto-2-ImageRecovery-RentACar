@@ -24,15 +24,14 @@ void ImageOperations::savePixels(Mat myImage) {
     for (int row = 0; row < myImage.rows; row++) {
         for (int col = 0; col < myImage.cols; col++) {
             Vec3b color = myImage.at<Vec3b>(Point(col,row));
-            if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
+            /*if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
                 this->colorsList.push_back(color);
-            }
-            /*
+            }*/
             if(!(color[0]==255 & color[1]==255 & color[2]==255)){
                 if (find(this->colorsList.begin(), this->colorsList.end(), color) == this->colorsList.end()) {
                     this->colorsList.push_back(color);
                 }
-            }*/
+            }
         }
     }
 }

@@ -12,12 +12,12 @@ private:
     int fitness;
     vector<Vec3b> genes;
     vector<Vec3b> colorsList;
-    vector<double> RectanglePercentages;
+    vector<double> IndividualPercentages;
     vector<int>  quantityOfEachGen;
 
 public:
     Individual(int genesQuantity, vector<Vec3b> colorsList);
-    void calculateIndFitness();
+    void calculateIndFitness(vector<double> percentages);
     void  pixelsPercentage();
     void quantities();
 

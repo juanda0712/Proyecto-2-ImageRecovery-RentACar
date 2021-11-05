@@ -2,13 +2,17 @@
 #include "Genetics.h"
 #include <utility>
 #include "iostream"
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui.hpp"
 
-Genetics::Genetics(int numOfGenerations, int genesQuantity, vector<Vec3b> colorsList , vector<double> percentajes) {
-    this->percentajesRectangle = percentajes;
+Genetics::Genetics(int numOfGenerations, int genesQuantity, vector<Vec3b> colorsList , vector<double> percentages) {
+    this->percentajesRectangle = percentages;
     this->fittest = nullptr;
     this->secondFittest = nullptr;
     this->numOfGenerations = numOfGenerations;
     this->currentGen = new Population(genesQuantity,colorsList);
+    this->genesQuantity = genesQuantity;
+    this->colorsList = colorsList;
 }
 
 Genetics::~Genetics() {
@@ -17,38 +21,46 @@ Genetics::~Genetics() {
     delete this->secondFittest;
 }
 
-void Genetics::geneticAlgorithm() {
-    currentGen->calculateFitness();
+vector<Individual> Genetics::geneticAlgorithm() {
+    currentGen->calculateFitness(percentajesRectangle);
+    cout<< "calculo el Fitness"<< endl;
+    vector<double> crossoverIndPercentajes;
+    cout<< "Antes del while"<< endl;
+
     while (this->numOfGenerations > 0) {
         this->selection();
-        this->crossover();
+        this->allFittest.insert(allFittest.cend(), *fittest);
+
+        crossoverIndPercentajes = this->crossover();     // se lo debo pasar a Population como parametro
+
+        /*
         if (1 + (rand() % 7) < 5) {
             this->mutation();
         }
         if (1 + (rand()%50) < 5) {
             this->inversion();
-        }
-        currentGen = new Population(this->pixels);
-        currentGen->calculateFitness();
+        }*/
+
+        currentGen = new Population(this->genesQuantity,this->colorsList);
+        //falta agregar el individuo fitness de la generacion anterior
+        currentGen->calculateFitness(percentajesRectangle);
         this->numOfGenerations--;
     }
+    return this->allFittest;
 }
 
 void Genetics::selection() {
-    cout << "Selecting" << endl;
     this->fittest = currentGen->getFittest();
     this->secondFittest = currentGen->getSecondFittest();
 }
 
-void Genetics::crossover() {
+vector<double> Genetics::crossover() {
     int lessReference=0;
     int largerReference=0;
     int diference=0;
-    int sumLessers=0;
-    int sumLargers=0;
+    vector<double> IndPercentajes = this->fittest->getRectanglePercentages();
 
-
-    for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {
+    for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {  // saca la cantidad de menores y mayores al de referencia
         if(this->fittest->getRectanglePercentages()[i] < this->percentajesRectangle[i]){
             lessReference+=1;
         }
@@ -57,7 +69,7 @@ void Genetics::crossover() {
         }
         }
 
-    for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {
+    for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {  //saca la diferencia
         if(this->fittest->getRectanglePercentages()[i] < this->percentajesRectangle[i]){
             diference = abs(this->fittest->getRectanglePercentages()[i] - this->percentajesRectangle[i]);
         }
@@ -65,12 +77,22 @@ void Genetics::crossover() {
 
     for (int i = 0; i < this->fittest->getRectanglePercentages().size() ; i++) {
         if(this->fittest->getRectanglePercentages()[i] < this->percentajesRectangle[i]){
+            if(fittest->getRectanglePercentages().size() == 2){
+                IndPercentajes[i] += diference / (double)2;
+            } else{
+                IndPercentajes[i] += diference / (double)lessReference;
+            }
 
         }
         if(this->fittest->getRectanglePercentages()[i] > this->percentajesRectangle[i]){
-
+            if(fittest->getRectanglePercentages().size() == 2){
+                IndPercentajes[i] -= diference / (double)2;
+            }else{
+                IndPercentajes[i] -= diference / (double)largerReference;
+            }
         }
     }
+    return IndPercentajes;
 }
 
 /*
@@ -109,3 +131,4 @@ void Genetics::inversion() {
         }
     }
 }*/
+

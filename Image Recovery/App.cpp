@@ -1,9 +1,8 @@
-/*
 #include "App.h"
-
-App::App() {
+/*
+App::App(string fileName) {
     this->running = true;
-    img = imread("/home/eduardo/Escritorio/Proyecto-2-ImageRecovery-RentACar/Image Recovery/images/patron.png");
+    img = imread(fileName);
     initWindow();
     initPtrs();
 }
@@ -21,7 +20,7 @@ void App::initWindow() {
 
 void App::initPtrs() {
     this->ops = new ImageOperations(this->img);
-    this->genetic_engine = new Genetics(20, ops->getPoints());
+    this->genetic_engine = new Genetics(20, ops->getTotalRectanglePixels(),ops->getColors(),ops->getPercentages());
 }
 
 bool App::isRunning() {
@@ -29,7 +28,7 @@ bool App::isRunning() {
 }
 
 void App::begin() {
-    this->genetic_engine->geneticAlgorithm();
+    this->genetic_engine->geneticAlgorithm(&this->img);
 }
 
 void App::kill() {
@@ -45,6 +44,7 @@ void App::listen(int key) {
         this->begin();
     }
     else if (key == 'd') {
+        genetic_engine->updateFlag(true);
         std::cout << "Next" << std::endl;
     }
     else if (key == 'a') {

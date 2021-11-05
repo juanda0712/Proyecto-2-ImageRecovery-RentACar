@@ -13,13 +13,18 @@ private:
     Individual* fittest;
     Individual* secondFittest;
     vector<double> percentajesRectangle;
+    int genesQuantity;
+    vector<Vec3b> colorsList;
+    vector<Individual> allFittest;
+
 public:
-    Genetics(int numOfGenerations, int genesQuantity, vector<Vec3b> colorsList,vector<double> percentajes);
+    Genetics(int numOfGenerations, int genesQuantity, vector<Vec3b> colorsList,vector<double> percentages);
     ~Genetics();
-    void geneticAlgorithm();
+    vector<Individual> geneticAlgorithm();
     void selection();
-    void crossover();
+    vector<double> crossover();
     void mutation();
     void inversion();
+
 };
 #endif //IMAGE_RECOVERY_GENETICS_H

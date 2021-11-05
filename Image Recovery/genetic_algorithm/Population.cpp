@@ -6,17 +6,17 @@ Population::Population(int genesQuantity, vector<Vec3b> colorsList) {
     }
 }
 
-void Population::calculateFitness() {
+void Population::calculateFitness(vector<double> percentages) {
     for (auto & individual : this->individuals) {
-        individual->calculateIndFitness();
+        individual->calculateIndFitness(percentages);
     }
 }
 
 Individual* Population::getFittest() {
-    int currentFitness = 0;
+    int currentFitness = this->individuals[0]->getFitness();
     int fit;
     for (int i = 0; i < individualsQuantity; i++) {
-        if (this->individuals[i]->getFitness() > currentFitness) {
+        if (this->individuals[i]->getFitness() < currentFitness) {
             currentFitness = this->individuals[i]->getFitness();
             fit = i;
         }
@@ -25,12 +25,11 @@ Individual* Population::getFittest() {
 }
 
 Individual* Population::getSecondFittest() {
-    int currentFitness = 0;
+    int currentFitness = this->individuals[0]->getFitness();
     int fit1=0;
     int fit2;
     for (int i = 0; i < individualsQuantity; i++) {
-
-        if (this->individuals[i]->getFitness() > currentFitness) {
+        if (this->individuals[i]->getFitness() < currentFitness) {
             currentFitness = this->individuals[i]->getFitness();
             fit2 = fit1;
             fit1 = i;

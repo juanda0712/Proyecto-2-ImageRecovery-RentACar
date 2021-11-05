@@ -23,7 +23,7 @@ private:
     void initWindow();
     void initPtrs();
 public:
-    App();
+    App(string fileName);
     ~App();
     void begin();
     void kill();

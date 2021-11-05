@@ -15,9 +15,10 @@ private:
     int individualsQuantity = 10;
     Individual* individuals[10]; //cantidad de individuos
 
+
 public:
     Population(int genesQuantity, vector<Vec3b> colorsList);
-    void calculateFitness();
+    void calculateFitness(vector<double> percentages);
 
     //setters
     void setNum();
